@@ -808,15 +808,24 @@ const CATS = [
 let cart = [];
 try {
   const savedCart = localStorage.getItem('cart');
+  console.log('טעינת עגלה מ-localStorage:', savedCart ? savedCart.length + ' תווים' : 'ריק/לא קיים');
   if (savedCart) cart = JSON.parse(savedCart);
-} catch (e) {}
+} catch (e) {
+  console.error('טעינת העגלה נכשלה:', e);
+}
 
 function gloveCartonsInCart() {
   return cart.filter(i => i.isGlove).reduce((s,i) => s + i.qty, 0);
 }
 
 function updateCartUI() {
-  try { localStorage.setItem('cart', JSON.stringify(cart)); } catch (e) {}
+  try {
+    const cartJson = JSON.stringify(cart);
+    localStorage.setItem('cart', cartJson);
+    console.log('שמירת עגלה הצליחה, גודל:', cartJson.length, 'תווים');
+  } catch (e) {
+    console.error('שמירת העגלה נכשלה:', e);
+  }
   const total = cart.reduce((s,i) => s + ((i.price||0) * i.qty), 0);
   const count = cart.reduce((s,i) => s + i.qty, 0);
   const cartoons = gloveCartonsInCart();
