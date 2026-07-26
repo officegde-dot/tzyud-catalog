@@ -1022,9 +1022,9 @@ function submitNewCustomer() {
   if (c2phone) details += `• איש קשר נוסף: ${c2name || '—'} - ${c2phone}\n`;
   if (payment) details += `• אופן תשלום: ${payment}\n`;
   closeCustomerModal();
-  finalizeOrder(details);
+  finalizeOrder(details, {name: c1name || invoiceName, phone: c1phone, business: invoiceName, city: address});
 }
-function finalizeOrder(customerNote) {
+function finalizeOrder(customerNote, sheetFields) {
   const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
   let msg = '🛒 *הזמנה חדשה מהקטלוג*\n\n';
   cart.forEach(item => {
@@ -1035,6 +1035,9 @@ function finalizeOrder(customerNote) {
   msg += `\n💰 *סה"כ: ₪${total}*\n\n${customerNote}\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
   if (typeof fbq === 'function') {
     fbq('track', 'InitiateCheckout', {value: total, currency: 'ILS', num_items: cart.reduce((s,i) => s + i.qty, 0)});
+  }
+  if (sheetFields) {
+    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות', agent:getAgentLabel(), note:'הזמנה מהאתר - ₪' + total});
   }
   window.open('https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent(msg), '_blank');
 }
@@ -1057,7 +1060,38 @@ function submitLead() {
   msg += `• טלפון: ${phone}\n`;
   if (email) msg += `• אימייל: ${email}\n`;
   if (typeof fbq === 'function') fbq('track', 'Lead');
+  logToSheet({name, phone, business:name, email, city, businessType:BIZ_TYPE_MAP[usage] || '', status:'ליד', agent:getAgentLabel()});
   window.open('https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ══ GOOGLE SHEET LOG (מאגר לקוחות אלף רייש) ══
+const SHEET_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeQVb5zJ2BaIopLXXN5GoVWJAGLmErK71VnYL4c4Ke3NXM1Kg/formResponse';
+const AGENT_LABELS = {'1':'סוכן 1','2':'סוכן 2','3':'אלף רייש ראשי'};
+const BIZ_TYPE_MAP = {
+  'קוסמטיקה':'קוסמטיקה',
+  'רפואי':'קליניקה/מרפאה',
+  'פרטי':'אחר',
+  'מסעדנות':'מסעדה/קייטרינג',
+  'מוסך / תעשייה':'תעשייה ובעלי מקצוע',
+  'אחר':'אחר'
+};
+function getAgentLabel() {
+  const id = new URLSearchParams(location.search).get('agent');
+  return AGENT_LABELS[id] || AGENT_LABELS['1'];
+}
+function logToSheet(fields) {
+  const body = new URLSearchParams();
+  if (fields.name) body.append('entry.1981605026', fields.name);
+  if (fields.phone) body.append('entry.647588508', fields.phone);
+  if (fields.business) body.append('entry.129046996', fields.business);
+  if (fields.email) body.append('entry.1205107694', fields.email);
+  if (fields.city) body.append('entry.407106079', fields.city);
+  if (fields.businessType) body.append('entry.1378723386', fields.businessType);
+  if (fields.status) body.append('entry.1766792199', fields.status);
+  if (fields.mainProduct) body.append('entry.613979080', fields.mainProduct);
+  if (fields.agent) body.append('entry.1262556454', fields.agent);
+  if (fields.note) body.append('entry.868896998', fields.note);
+  fetch(SHEET_FORM_URL, {method:'POST', mode:'no-cors', body}).catch(()=>{});
 }
 
 // ══ QTY / CHIP HELPERS ══
