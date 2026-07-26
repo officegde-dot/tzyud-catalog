@@ -169,6 +169,10 @@ main{max-width:920px;margin:0 auto;padding:10px 14px 16px;}
 .welcome-box p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
 .welcome-box p strong{color:var(--text);}
 .welcome-btn{background:linear-gradient(135deg,var(--pink),var(--pink2));color:#fff;border:none;padding:13px 22px;border-radius:50px;font-size:14.5px;font-weight:800;cursor:pointer;font-family:'Heebo',sans-serif;width:100%;margin-top:6px;box-shadow:0 6px 18px rgba(233,30,140,0.35);}
+.welcome-btn-outline{background:#fff;color:var(--pink);border:2px solid var(--pink);box-shadow:none;}
+.welcome-box input,.welcome-box select{width:100%;padding:11px 14px;margin-bottom:9px;border:1.5px solid var(--border);border-radius:10px;font-size:13.5px;font-family:'Heebo',sans-serif;background:#fff;color:var(--text);text-align:right;}
+.welcome-box input:focus,.welcome-box select:focus{outline:none;border-color:var(--pink);}
+#custNewForm.hide,#custChoiceView.hide{display:none;}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.38);z-index:290;display:none;}
 .overlay.show{display:block;}
 .drawer{position:fixed;bottom:0;left:0;right:0;z-index:300;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -6px 30px rgba(0,0,0,0.14);transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);max-height:72vh;display:flex;flex-direction:column;}
@@ -276,8 +280,39 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     כמה מילים לפני שמתחילים לקנות:</p>
     <p>כדי לפתוח הזמנה, בוחרים <strong>לפחות 2 קרטונים כפפות</strong> (אפשר לגמרי לשלב כמה סוגים וצבעים שרוצים 🎨).<br>
     ברגע שיש לכם 2 קרטונים כפפות בעגלה - נפתחת האפשרות להוסיף גם <strong>מוצרים נלווים</strong>: מסכות, קוסמטיקה, חד פעמי והיגיינה, בכל כמות שבא לכם 🛒</p>
-    <p>ומעל ₪400 - <strong>המשלוח עלינו!</strong> 🚚💨</p>
+    <p>ובנוסף - <strong>המשלוח עלינו!</strong> 🚚💨</p>
     <button class="welcome-btn" onclick="closeWelcome()">הבנתי, בואו נתחיל! 😊</button>
+  </div>
+</div>
+
+<div id="customerModal" class="welcome-overlay hide">
+  <div class="welcome-box">
+    <div id="custChoiceView">
+      <div class="welcome-emoji">🙋</div>
+      <h2>רק שנייה לפני השליחה</h2>
+      <p>האם אתם לקוחות חדשים או לקוחות קיימים אצלנו?</p>
+      <button class="welcome-btn" onclick="chooseExisting()">✅ לקוח קיים</button>
+      <button class="welcome-btn welcome-btn-outline" onclick="chooseNew()">🆕 לקוח חדש</button>
+    </div>
+    <div id="custNewForm" class="hide">
+      <h2>פרטים ראשוניים</h2>
+      <p>נצטרך כמה פרטים בשביל המשלוח והחשבונית 😊</p>
+      <input type="text" id="custAddress" placeholder="כתובת למשלוח / עיר">
+      <input type="text" id="custInvoiceName" placeholder="שם לחשבונית">
+      <input type="text" id="custContact1Name" placeholder="שם איש קשר לקבלת המשלוח">
+      <input type="tel" id="custContact1Phone" placeholder="טלפון איש קשר">
+      <input type="text" id="custContact2Name" placeholder="איש קשר נוסף (לא חובה)">
+      <input type="tel" id="custContact2Phone" placeholder="טלפון איש קשר נוסף (לא חובה)">
+      <select id="custPayment">
+        <option value="">אופן תשלום...</option>
+        <option value="העברה בנקאית">העברה בנקאית</option>
+        <option value="ביט">ביט</option>
+        <option value="פייבוקס">פייבוקס</option>
+        <option value="מזומן לשליח">מזומן לשליח</option>
+        <option value="אחר">אחר</option>
+      </select>
+      <button class="welcome-btn" onclick="submitNewCustomer()">📩 שליחת ההזמנה</button>
+    </div>
   </div>
 </div>
 
@@ -770,12 +805,17 @@ const CATS = [
 
 // ══ CART ══
 let cart = [];
+try {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) cart = JSON.parse(savedCart);
+} catch (e) {}
 
 function gloveCartonsInCart() {
   return cart.filter(i => i.isGlove).reduce((s,i) => s + i.qty, 0);
 }
 
 function updateCartUI() {
+  try { localStorage.setItem('cart', JSON.stringify(cart)); } catch (e) {}
   const total = cart.reduce((s,i) => s + (i.price * i.qty), 0);
   const count = cart.reduce((s,i) => s + i.qty, 0);
   const cartoons = gloveCartonsInCart();
@@ -940,6 +980,50 @@ function sendOrder() {
     alert('מינימום הזמנה: 2 קרטונים (ניתן לשלב סוגים שונים)');
     return;
   }
+  if (localStorage.getItem('customerType') === 'existing') {
+    finalizeOrder('👤 לקוח קיים');
+  } else {
+    openCustomerModal();
+  }
+}
+
+// ══ NEW/EXISTING CUSTOMER MODAL ══
+function openCustomerModal() {
+  document.getElementById('custChoiceView').classList.remove('hide');
+  document.getElementById('custNewForm').classList.add('hide');
+  document.getElementById('customerModal').classList.remove('hide');
+}
+function closeCustomerModal() {
+  document.getElementById('customerModal').classList.add('hide');
+}
+function chooseExisting() {
+  localStorage.setItem('customerType', 'existing');
+  closeCustomerModal();
+  finalizeOrder('👤 לקוח קיים');
+}
+function chooseNew() {
+  document.getElementById('custChoiceView').classList.add('hide');
+  document.getElementById('custNewForm').classList.remove('hide');
+}
+function submitNewCustomer() {
+  const address = document.getElementById('custAddress').value.trim();
+  const invoiceName = document.getElementById('custInvoiceName').value.trim();
+  const c1name = document.getElementById('custContact1Name').value.trim();
+  const c1phone = document.getElementById('custContact1Phone').value.trim();
+  const c2name = document.getElementById('custContact2Name').value.trim();
+  const c2phone = document.getElementById('custContact2Phone').value.trim();
+  const payment = document.getElementById('custPayment').value;
+  if (!address || !invoiceName || !c1phone) {
+    alert('נא למלא לפחות כתובת למשלוח, שם לחשבונית וטלפון איש קשר');
+    return;
+  }
+  let details = `👤 *לקוח חדש*\n• כתובת למשלוח: ${address}\n• שם לחשבונית: ${invoiceName}\n• איש קשר: ${c1name || '—'} - ${c1phone}\n`;
+  if (c2phone) details += `• איש קשר נוסף: ${c2name || '—'} - ${c2phone}\n`;
+  if (payment) details += `• אופן תשלום: ${payment}\n`;
+  closeCustomerModal();
+  finalizeOrder(details);
+}
+function finalizeOrder(customerNote) {
   const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
   let msg = '🛒 *הזמנה חדשה מהקטלוג*\n\n';
   cart.forEach(item => {
@@ -947,7 +1031,7 @@ function sendOrder() {
     if (item.price > 0) msg += ` = ₪${item.price * item.qty}`;
     msg += '\n';
   });
-  msg += `\n💰 *סה"כ: ₪${total}*\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
+  msg += `\n💰 *סה"כ: ₪${total}*\n\n${customerNote}\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
   if (typeof fbq === 'function') {
     fbq('track', 'InitiateCheckout', {value: total, currency: 'ILS', num_items: cart.reduce((s,i) => s + i.qty, 0)});
   }
@@ -1073,7 +1157,13 @@ function selectPriceOpt(chip, productId) {
 
 function buildCard(p) {
   const badge = p.badge ? `<div class="badge ${p.badge}">${p.badgeText}</div>` : '';
-  const priceHtml = `<div class="cprice" id="price-${p.id}"><span class="p">${p.price > 0 ? '₪' + p.price : 'לפי פנייה'}</span><span class="pu">${p.priceUnit||''}</span>${p.priceNote ? `<span class="psub">(${p.priceNote})</span>` : ''}</div>`;
+  let priceHtml;
+  if (p.type === 'glove') {
+    const perPack = p.price / 10;
+    priceHtml = `<div class="cprice" id="price-${p.id}"><span class="p">₪${perPack}</span><span class="pu">לחבילה</span><span class="psub">× 10 חבילות = ₪${p.price} לקרטון</span></div>`;
+  } else {
+    priceHtml = `<div class="cprice" id="price-${p.id}"><span class="p">${p.price > 0 ? '₪' + p.price : 'לפי פנייה'}</span><span class="pu">${p.priceUnit||''}</span>${p.priceNote ? `<span class="psub">(${p.priceNote})</span>` : ''}</div>`;
+  }
 
   let controls = '';
   if (p.type === 'glove') {
