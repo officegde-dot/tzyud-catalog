@@ -817,7 +817,7 @@ function gloveCartonsInCart() {
 
 function updateCartUI() {
   try { localStorage.setItem('cart', JSON.stringify(cart)); } catch (e) {}
-  const total = cart.reduce((s,i) => s + (i.price * i.qty), 0);
+  const total = cart.reduce((s,i) => s + ((i.price||0) * i.qty), 0);
   const count = cart.reduce((s,i) => s + i.qty, 0);
   const cartoons = gloveCartonsInCart();
   const pct = Math.min(100, (cartoons / 2) * 100);
@@ -825,9 +825,6 @@ function updateCartUI() {
 
   document.getElementById('cartCount').textContent = count;
   document.getElementById('cartTotalTxt').textContent = count ? 'סה"כ: ₪' + total : 'סל הקניות ריק';
-  document.getElementById('cartPreviewTxt').textContent = count
-    ? cart.map(i => i.name.split('|')[0].trim() + ' ×' + i.qty).join(' · ')
-    : 'הוסף מוצרים להזמנה';
   document.getElementById('minFill').style.width = pct + '%';
   document.getElementById('minFill').style.background = ready ? 'var(--green)' : 'var(--pink)';
   document.getElementById('minLabel').textContent = cartoons + '/2 קרטונים';
@@ -835,7 +832,6 @@ function updateCartUI() {
   document.getElementById('drwTotal').textContent = '₪' + total;
   document.getElementById('drwWarn').classList.toggle('hide', ready);
   document.getElementById('drwSendBtn').disabled = !ready;
-  renderDrawerItems();
   // sync bottom bar
   const bbCount = document.getElementById('bbCartCount');
   const bbTotal = document.getElementById('bbCartTotal');
@@ -845,6 +841,13 @@ function updateCartUI() {
   if (bbTotal) bbTotal.textContent = count ? '₪' + total : 'סל ריק';
   if (bbMin)   bbMin.textContent   = cartoons + '/2 קרטונים';
   if (bbSend)  bbSend.disabled     = !ready;
+
+  try {
+    document.getElementById('cartPreviewTxt').textContent = count
+      ? cart.map(i => (i.name||'').split('|')[0].trim() + ' ×' + i.qty).join(' · ')
+      : 'הוסף מוצרים להזמנה';
+  } catch (e) { console.error('cartPreviewTxt render failed', e); }
+  try { renderDrawerItems(); } catch (e) { console.error('renderDrawerItems failed', e); }
 }
 
 // ══ ADD TO CART ══
@@ -967,8 +970,8 @@ function renderDrawerItems() {
     <div class="drw-item">
       ${item.img ? `<img class="drw-item-img" src="${item.img}" alt="">` : '<div class="drw-item-img" style="display:flex;align-items:center;justify-content:center;font-size:22px">🛒</div>'}
       <div class="drw-item-info">
-        <div class="drw-item-name">${item.name.split('|')[0].trim()}</div>
-        <div class="drw-item-meta">${item.name.includes('|') ? item.name.split('|').slice(1).join('|').trim() : ''} · ${item.packs ? item.qty + ' קרטונים (' + item.packs + ' חבילות)' : 'כמות: ' + item.qty}</div>
+        <div class="drw-item-name">${(item.name||'').split('|')[0].trim()}</div>
+        <div class="drw-item-meta">${(item.name||'').includes('|') ? item.name.split('|').slice(1).join('|').trim() : ''} · ${item.packs ? item.qty + ' קרטונים (' + item.packs + ' חבילות)' : 'כמות: ' + item.qty}</div>
       </div>
       <div class="drw-item-price">${item.price > 0 ? '₪' + (item.price * item.qty) : 'לפי פנייה'}</div>
       <button class="drw-item-rm" onclick="removeFromCart(${i})">✕</button>
@@ -1265,10 +1268,10 @@ if (!localStorage.getItem('welcomeSeen')) {
 }
 
 // ══ INIT ══
-applyAgentLinks();
-buildCatalog();
-startAutoRotate();
-updateCartUI();
+try { applyAgentLinks(); } catch (e) { console.error('applyAgentLinks failed', e); }
+try { buildCatalog(); } catch (e) { console.error('buildCatalog failed', e); }
+try { startAutoRotate(); } catch (e) { console.error('startAutoRotate failed', e); }
+try { updateCartUI(); } catch (e) { console.error('updateCartUI failed', e); }
 // add section IDs for nav scroll
 document.querySelectorAll('.sec').forEach(sec => {
   const h2 = sec.querySelector('h2');
