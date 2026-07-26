@@ -1281,7 +1281,13 @@ try { applyAgentLinks(); } catch (e) { console.error('applyAgentLinks failed', e
 try { buildCatalog(); } catch (e) { console.error('buildCatalog failed', e); }
 try { startAutoRotate(); } catch (e) { console.error('startAutoRotate failed', e); }
 try { updateCartUI(); } catch (e) { console.error('updateCartUI failed', e); }
-setTimeout(() => { try { updateCartUI(); } catch (e) { console.error('updateCartUI (deferred) failed', e); } }, 0);
+function resyncCartUI() { try { updateCartUI(); console.log('סנכרון עגלה חוזר בוצע'); } catch (e) { console.error('resyncCartUI failed', e); } }
+if (document.readyState === 'complete') {
+  resyncCartUI();
+} else {
+  window.addEventListener('load', resyncCartUI);
+}
+setTimeout(resyncCartUI, 1500);
 // add section IDs for nav scroll
 document.querySelectorAll('.sec').forEach(sec => {
   const h2 = sec.querySelector('h2');
