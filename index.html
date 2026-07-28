@@ -215,12 +215,9 @@ footer{text-align:center;padding:18px;font-size:10px;color:var(--muted);border-t
 }
 
 /* ── TOP NAV ── */
-.led-ticker{background:#000;overflow:hidden;white-space:nowrap;padding:8px 0;position:relative;border-bottom:1px solid #2a0f1f;}
+.led-ticker{background:#000;overflow:hidden;padding:10px 16px;position:relative;border-bottom:1px solid #2a0f1f;text-align:center;}
 .led-ticker::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,77,184,0.12) 1px,transparent 1px);background-size:5px 5px;pointer-events:none;}
-.led-track{display:flex;gap:56px;width:max-content;will-change:transform;animation:led-scroll 20s linear infinite;}
-@keyframes led-scroll{from{transform:translateX(-50%);}to{transform:translateX(0);}}
-@media (prefers-reduced-motion: reduce){.led-track{animation-play-state:paused;}}
-.led-item{color:#FF4DB8;font-family:'Heebo',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:0.3px;text-shadow:0 0 5px rgba(255,77,184,0.85),0 0 14px rgba(255,77,184,0.45);white-space:nowrap;}
+.led-item{color:#FF4DB8;font-family:'Heebo',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:0.3px;text-shadow:0 0 5px rgba(255,77,184,0.85),0 0 14px rgba(255,77,184,0.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;transition:opacity .5s ease;}
 .top-nav{position:sticky;top:0;left:0;right:0;z-index:150;height:48px;max-width:100vw;background:rgba(10,10,15,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:flex-start;padding:0 16px;gap:12px;}
 .top-nav-logo{font-size:13px;font-weight:800;color:#fff;white-space:nowrap;letter-spacing:.3px;}
 .top-nav-logo span{color:var(--pink2,#FF4DB8);}
@@ -279,22 +276,7 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 <body>
 
 <div class="led-ticker">
-  <div class="led-track">
-    <span class="led-item">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
-    <span class="led-item">🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים</span>
-    <span class="led-item">⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות</span>
-    <span class="led-item">✅ כל סוגי הכפפות במלאי זמין</span>
-    <span class="led-item">🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים</span>
-    <span class="led-item">🧤 כפפות ויניל שקוף זמינות במידות L/XL</span>
-    <span class="led-item">📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה</span>
-    <span class="led-item">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
-    <span class="led-item">🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים</span>
-    <span class="led-item">⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות</span>
-    <span class="led-item">✅ כל סוגי הכפפות במלאי זמין</span>
-    <span class="led-item">🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים</span>
-    <span class="led-item">🧤 כפפות ויניל שקוף זמינות במידות L/XL</span>
-    <span class="led-item">📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה</span>
-  </div>
+  <span class="led-item" id="ledMsg">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
 </div>
 
 <div id="welcomeModal" class="welcome-overlay hide">
@@ -1300,6 +1282,30 @@ function closeWelcome() {
 if (!localStorage.getItem('welcomeSeen')) {
   document.getElementById('welcomeModal').classList.remove('hide');
 }
+
+// ══ LED TICKER (simple fade-cycle, no width/scroll math) ══
+(function runLedTicker() {
+  const el = document.getElementById('ledMsg');
+  if (!el) return;
+  const MESSAGES = [
+    '💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל',
+    '🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים',
+    '⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות',
+    '✅ כל סוגי הכפפות במלאי זמין',
+    '🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים',
+    '🧤 כפפות ויניל שקוף זמינות במידות L/XL',
+    '📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה'
+  ];
+  let idx = 0;
+  setInterval(function () {
+    el.style.opacity = '0';
+    setTimeout(function () {
+      idx = (idx + 1) % MESSAGES.length;
+      el.textContent = MESSAGES[idx];
+      el.style.opacity = '1';
+    }, 500);
+  }, 3500);
+})();
 
 // ══ INIT ══
 try { applyAgentLinks(); } catch (e) { console.error('applyAgentLinks failed', e); }

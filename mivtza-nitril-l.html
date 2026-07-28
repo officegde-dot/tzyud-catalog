@@ -31,12 +31,9 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);line-
 .hero-sub{color:rgba(255,255,255,0.65);font-size:14px;margin-top:10px;}
 .size-badge{display:inline-block;font-size:23px;font-weight:900;color:#fff;background:rgba(255,77,184,0.18);border:2px solid var(--pink2);padding:7px 24px;border-radius:50px;margin-top:14px;}
 
-.led-ticker{background:#000;overflow:hidden;white-space:nowrap;padding:8px 0;position:relative;border-bottom:1px solid #2a0f1f;}
+.led-ticker{background:#000;overflow:hidden;padding:10px 16px;position:relative;border-bottom:1px solid #2a0f1f;text-align:center;}
 .led-ticker::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,77,184,0.12) 1px,transparent 1px);background-size:5px 5px;pointer-events:none;}
-.led-track{display:flex;gap:56px;width:max-content;will-change:transform;animation:led-scroll 20s linear infinite;}
-@keyframes led-scroll{from{transform:translateX(-50%);}to{transform:translateX(0);}}
-@media (prefers-reduced-motion: reduce){.led-track{animation-play-state:paused;}}
-.led-item{color:#FF4DB8;font-family:'Heebo',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:0.3px;text-shadow:0 0 5px rgba(255,77,184,0.85),0 0 14px rgba(255,77,184,0.45);white-space:nowrap;}
+.led-item{color:#FF4DB8;font-family:'Heebo',sans-serif;font-weight:800;font-size:13.5px;letter-spacing:0.3px;text-shadow:0 0 5px rgba(255,77,184,0.85),0 0 14px rgba(255,77,184,0.45);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;transition:opacity .5s ease;}
 
 .prod-image-wrap{max-width:480px;margin:-34px auto 0;padding:0 24px;position:relative;z-index:2;}
 .prod-image{width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,0.28);display:block;}
@@ -104,22 +101,7 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 <body>
 
 <div class="led-ticker">
-  <div class="led-track">
-    <span class="led-item">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
-    <span class="led-item">🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים</span>
-    <span class="led-item">⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות</span>
-    <span class="led-item">✅ כל סוגי הכפפות במלאי זמין</span>
-    <span class="led-item">🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים</span>
-    <span class="led-item">🧤 כפפות ויניל שקוף זמינות במידות L/XL</span>
-    <span class="led-item">📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה</span>
-    <span class="led-item">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
-    <span class="led-item">🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים</span>
-    <span class="led-item">⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות</span>
-    <span class="led-item">✅ כל סוגי הכפפות במלאי זמין</span>
-    <span class="led-item">🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים</span>
-    <span class="led-item">🧤 כפפות ויניל שקוף זמינות במידות L/XL</span>
-    <span class="led-item">📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה</span>
-  </div>
+  <span class="led-item" id="ledMsg">💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל</span>
 </div>
 
 <div class="hero">
@@ -204,6 +186,30 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 </div>
 
 <script>
+// ══ LED TICKER (simple fade-cycle, no width/scroll math) ══
+(function runLedTicker() {
+  const el = document.getElementById('ledMsg');
+  if (!el) return;
+  const MESSAGES = [
+    '💜 כפפות סגול בהיר במידה S בלבד - מלאי מוגבל',
+    '🔥 ניטריל שחור 3.5 גרם במבצע מטורף - שאלו את הסוכנים',
+    '⚠️ המצב במפרץ אינו יציב, וכך גם מחירי הכפפות',
+    '✅ כל סוגי הכפפות במלאי זמין',
+    '🛒 על כל הזמנת כפפות אפשר להוסיף גם מוצרים נלווים',
+    '🧤 כפפות ויניל שקוף זמינות במידות L/XL',
+    '📍 המחסן החדש שלנו נמצא במושב טירת יהודה, ליד שדה התעופה'
+  ];
+  let idx = 0;
+  setInterval(function () {
+    el.style.opacity = '0';
+    setTimeout(function () {
+      idx = (idx + 1) % MESSAGES.length;
+      el.textContent = MESSAGES[idx];
+      el.style.opacity = '1';
+    }, 500);
+  }, 3500);
+})();
+
 const MIN_QTY = 10, MAX_QTY = 120, PRICE_PER_CARTON = 149;
 let qty = MIN_QTY;
 
