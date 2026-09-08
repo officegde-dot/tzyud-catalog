@@ -1212,7 +1212,7 @@ function buildCard(p) {
     controls = buildVariants(p) + buildSizeQty(p)
       + `<button class="add-btn" onclick="addGlove(this,'${p.id}')">🛒 הוסף לסל</button>`;
   } else if (p.type === 'colored') {
-    const mx = p.maxQty || '';
+    const mx = p.maxQty || 999;
     const step = p.qtyStep || 1;
     const startQty = p.minQty || 1;
     controls = buildVariants(p) + buildPriceOptions(p)
