@@ -195,6 +195,13 @@ main{max-width:920px;margin:0 auto;padding:10px 14px 16px;}
 .drw-total span{color:var(--pink);}
 .drw-min-warn{background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:8px 12px;font-size:11px;color:#DC2626;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
 .drw-min-warn.hide{display:none;}
+.coupon-row{display:flex;gap:6px;margin-bottom:6px;}
+.coupon-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:12.5px;font-family:'Heebo',sans-serif;background:#fff;color:var(--text);text-align:right;}
+.coupon-row input:focus{outline:none;border-color:var(--pink);}
+.coupon-row button{background:var(--pinkbg);color:var(--pink);border:1.5px solid var(--pink);border-radius:10px;padding:0 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;flex-shrink:0;}
+.coupon-msg{font-size:11px;font-weight:700;margin-bottom:8px;min-height:14px;}
+.drw-discount-row{display:flex;justify-content:space-between;font-size:12px;color:var(--green);font-weight:700;margin-bottom:4px;}
+.drw-subtotal-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);text-decoration:line-through;margin-bottom:4px;}
 .btn-wa{width:100%;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Heebo',sans-serif;}
 .btn-wa:disabled{background:#CBD5E1;cursor:not-allowed;}
 
@@ -285,9 +292,10 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     <h2>ברוכים הבאים!</h2>
     <p>שמחים שהגעתם 🧤<br>
     כמה מילים לפני שמתחילים לקנות:</p>
-    <p>כדי לפתוח הזמנה, בוחרים <strong>לפחות 2 קרטונים כפפות</strong> (אפשר לגמרי לשלב כמה סוגים וצבעים שרוצים 🎨).<br>
-    ברגע שיש לכם 2 קרטונים כפפות בעגלה - נפתחת האפשרות להוסיף גם <strong>מוצרים נלווים</strong>: מסכות, קוסמטיקה, חד פעמי והיגיינה, בכל כמות שבא לכם 🛒</p>
-    <p>ובנוסף - <strong>המשלוח עלינו!</strong> 🚚💨</p>
+    <p>כדי לשלוח הזמנה, מספיק לעמוד באחד משני התנאים:<br>
+    <strong>לפחות 2 קרטונים כפפות</strong> (אפשר לגמרי לשלב כמה סוגים וצבעים שרוצים 🎨), <strong>או לפחות ₪500 במוצרים נלווים</strong>: מסכות, קוסמטיקה, חד פעמי והיגיינה.<br>
+    אפשר כמובן להוסיף לעגלה גם וגם, בכל כמות שבא לכם 🛒</p>
+    <p>ובכל אחד מהמקרים - <strong>המשלוח עלינו!</strong> 🚚💨</p>
     <p>בסיום הבחירה, ההזמנה תיפתח כהודעת <strong>וואטסאפ</strong> מוכנה שנשלחת אלינו ישירות 📲</p>
     <button class="welcome-btn" onclick="closeWelcome()">הבנתי, בואו נתחיל! 😊</button>
   </div>
@@ -353,7 +361,7 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     </div>
     <h1><span>כפפות ניטריל ומגוון מוצרים משלימים</span></h1>
     <div class="hdr-sub">כפפות · חד פעמי · קוסמטיקה · היגיינה</div>
-    <div class="ship-badge">🚚 משלוח חינם ברכישת 2 קרטונים כפפות</div>
+    <div class="ship-badge">🚚 משלוח חינם ב-2 קרטוני כפפות או ₪500 במוצרים נלווים</div>
   </div>
 </div>
 
@@ -382,8 +390,8 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 <div class="notice-wrap">
   <div class="notice">
     <span style="font-size:20px;flex-shrink:0">📦</span>
-    <p><strong>מינימום הזמנה — 2 קרטונים כפפות</strong> (קרטון = 10 חבילות × 100 כפפות)<br>
-    לאחר הוספת 2 קרטונים כפפות ניתן להוסיף מוצרים נלווים בכל כמות. <strong>משלוח חינם!</strong><br>
+    <p><strong>מינימום הזמנה — 2 קרטונים כפפות, או ₪500 במוצרים נלווים</strong> (קרטון = 10 חבילות × 100 כפפות)<br>
+    אפשר לשלב גם וגם בעגלה, בכל כמות שבא לכם. <strong>משלוח חינם!</strong><br>
     <span style="font-size:12.5px;font-weight:700;">כל המחירים באתר כוללים מע״מ ✅</span></p>
   </div>
 </div>
@@ -399,8 +407,15 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
   </div>
   <div class="drw-items" id="drwItems"></div>
   <div class="drw-footer">
+    <div class="coupon-row">
+      <input type="text" id="couponInput" placeholder="קוד קופון (לא חובה)">
+      <button onclick="applyCoupon()">החל</button>
+    </div>
+    <div class="coupon-msg" id="couponMsg"></div>
+    <div class="drw-subtotal-row hide" id="drwSubtotalRow">סכום לפני הנחה: <span id="drwSubtotal">₪0</span></div>
+    <div class="drw-discount-row hide" id="drwDiscountRow">הנחת קופון: <span id="drwDiscountAmt">-₪0</span></div>
     <div class="drw-total">סה"כ: <span id="drwTotal">₪0</span></div>
-    <div class="drw-min-warn hide" id="drwWarn">⚠️ מינימום הזמנה: 2 קרטונים (ניתן לשלב מוצרים שונים)</div>
+    <div class="drw-min-warn hide" id="drwWarn">⚠️ מינימום הזמנה: 2 קרטונים כפפות, או ₪500 במוצרים נלווים</div>
     <button class="btn-wa" id="drwSendBtn" onclick="sendOrder()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 0C5.37 0 0 5.37 0 12c0 2.12.554 4.11 1.522 5.845L0 24l6.345-1.497A11.94 11.94 0 0 0 11.99 24C18.62 24 24 18.63 24 12S18.62 0 11.99 0z"/></svg>
       אישור ושליחה בוואטסאפ
@@ -459,6 +474,12 @@ function getAgentPhone() {
   const id = new URLSearchParams(location.search).get('agent');
   return AGENTS[id] || AGENTS['1'];
 }
+
+// ══ COUPONS (קל להוסיף מבצע חדש - רק שורה נוספת כאן) ══
+const COUPONS = {
+  'בדיקה2026': { discount: 0.025 }
+};
+let appliedCoupon = null;
 function applyAgentLinks() {
   const phone = getAgentPhone();
   ['waHdrLink','waFloat','waBulk'].forEach(id => {
@@ -812,6 +833,38 @@ try {
 function gloveCartonsInCart() {
   return cart.filter(i => i.isGlove).reduce((s,i) => s + i.qty, 0);
 }
+function accessoriesTotalInCart() {
+  return cart.filter(i => !i.isGlove).reduce((s,i) => s + ((i.price||0) * i.qty), 0);
+}
+function isOrderReady() {
+  return gloveCartonsInCart() >= 2 || accessoriesTotalInCart() >= 500;
+}
+function minProgressLabel() {
+  const cartons = gloveCartonsInCart();
+  const accTotal = accessoriesTotalInCart();
+  const pctCartons = Math.min(100, (cartons / 2) * 100);
+  const pctAcc = Math.min(100, (accTotal / 500) * 100);
+  if (cartons >= 2) return { pct: 100, text: cartons + '/2 קרטונים ✅' };
+  if (accTotal >= 500) return { pct: 100, text: '₪' + accTotal + '/500 נלווים ✅' };
+  if (pctAcc > pctCartons) return { pct: pctAcc, text: '₪' + accTotal + '/500 נלווים' };
+  return { pct: pctCartons, text: cartons + '/2 קרטונים' };
+}
+function applyCoupon() {
+  const input = document.getElementById('couponInput');
+  const code = input.value.trim();
+  const msgEl = document.getElementById('couponMsg');
+  const coupon = code ? COUPONS[code] : null;
+  if (!coupon) {
+    appliedCoupon = null;
+    msgEl.textContent = code ? '❌ קוד קופון לא תקין' : '';
+    msgEl.style.color = '#DC2626';
+  } else {
+    appliedCoupon = { code, discount: coupon.discount };
+    msgEl.textContent = `✅ קופון הופעל: ${Math.round(coupon.discount * 1000) / 10}% הנחה`;
+    msgEl.style.color = 'var(--green)';
+  }
+  updateCartUI();
+}
 
 function updateCartUI() {
   try {
@@ -821,18 +874,23 @@ function updateCartUI() {
   } catch (e) {
     console.error('שמירת העגלה נכשלה:', e);
   }
-  const total = cart.reduce((s,i) => s + ((i.price||0) * i.qty), 0);
+  const subtotal = cart.reduce((s,i) => s + ((i.price||0) * i.qty), 0);
+  const discountAmount = appliedCoupon ? Math.round(subtotal * appliedCoupon.discount) : 0;
+  const total = subtotal - discountAmount;
   const count = cart.reduce((s,i) => s + i.qty, 0);
-  const cartoons = gloveCartonsInCart();
-  const pct = Math.min(100, (cartoons / 2) * 100);
-  const ready = cartoons >= 2;
+  const ready = isOrderReady();
+  const prog = minProgressLabel();
 
   document.getElementById('cartCount').textContent = count;
   document.getElementById('cartTotalTxt').textContent = count ? 'סה"כ: ₪' + total : 'סל הקניות ריק';
-  document.getElementById('minFill').style.width = pct + '%';
+  document.getElementById('minFill').style.width = prog.pct + '%';
   document.getElementById('minFill').style.background = ready ? 'var(--green)' : 'var(--pink)';
-  document.getElementById('minLabel').textContent = cartoons + '/2 קרטונים';
+  document.getElementById('minLabel').textContent = prog.text;
   document.getElementById('sendBtn').disabled = !ready;
+  document.getElementById('drwSubtotalRow').classList.toggle('hide', !appliedCoupon);
+  document.getElementById('drwSubtotal').textContent = '₪' + subtotal;
+  document.getElementById('drwDiscountRow').classList.toggle('hide', !appliedCoupon);
+  document.getElementById('drwDiscountAmt').textContent = '-₪' + discountAmount;
   document.getElementById('drwTotal').textContent = '₪' + total;
   document.getElementById('drwWarn').classList.toggle('hide', ready);
   document.getElementById('drwSendBtn').disabled = !ready;
@@ -843,7 +901,7 @@ function updateCartUI() {
   const bbSend  = document.getElementById('bbSendBtn');
   if (bbCount) bbCount.textContent = count;
   if (bbTotal) bbTotal.textContent = count ? '₪' + total : 'סל ריק';
-  if (bbMin)   bbMin.textContent   = cartoons + '/2 קרטונים';
+  if (bbMin)   bbMin.textContent   = prog.text;
   if (bbSend)  bbSend.disabled     = !ready;
 
   try {
@@ -984,8 +1042,8 @@ function renderDrawerItems() {
 
 // ══ ORDER ══
 function sendOrder() {
-  if (gloveCartonsInCart() < 2) {
-    alert('מינימום הזמנה: 2 קרטונים (ניתן לשלב סוגים שונים)');
+  if (!isOrderReady()) {
+    alert('מינימום הזמנה: 2 קרטונים כפפות, או ₪500 במוצרים נלווים');
     return;
   }
   if (localStorage.getItem('customerType') === 'existing') {
@@ -1032,19 +1090,27 @@ function submitNewCustomer() {
   finalizeOrder(details, {name: c1name || invoiceName, phone: c1phone, business: invoiceName, city: address});
 }
 function finalizeOrder(customerNote, sheetFields) {
-  const total = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const subtotal = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const discountAmount = appliedCoupon ? Math.round(subtotal * appliedCoupon.discount) : 0;
+  const total = subtotal - discountAmount;
   let msg = '🛒 *הזמנה חדשה מהקטלוג*\n\n';
   cart.forEach(item => {
     msg += `• ${item.name} × ${item.packs ? item.qty + ' קרטונים (' + item.packs + ' חב\')' : item.qty}`;
     if (item.price > 0) msg += ` = ₪${item.price * item.qty}`;
     msg += '\n';
   });
-  msg += `\n💰 *סה"כ: ₪${total}*\n\n${customerNote}\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
+  if (appliedCoupon) {
+    msg += `\n🏷️ קופון: ${appliedCoupon.code} (${Math.round(appliedCoupon.discount * 1000) / 10}% הנחה) | -₪${discountAmount}`;
+    msg += `\n💰 *סה"כ לפני הנחה: ₪${subtotal}*\n💰 *סה"כ לתשלום: ₪${total}*\n\n${customerNote}\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
+  } else {
+    msg += `\n💰 *סה"כ: ₪${total}*\n\n${customerNote}\n\nנחזור אליך עם אישור הזמנה 🙏🏽`;
+  }
   if (typeof fbq === 'function') {
     fbq('track', 'InitiateCheckout', {value: total, currency: 'ILS', num_items: cart.reduce((s,i) => s + i.qty, 0)});
   }
   if (sheetFields) {
-    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות', agent:getAgentLabel(), note:'הזמנה מהאתר - ₪' + total});
+    const couponNote = appliedCoupon ? ' | קופון: ' + appliedCoupon.code + ' (-₪' + discountAmount + ')' : '';
+    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות', agent:getAgentLabel(), note:'הזמנה מהאתר - ₪' + total + couponNote});
   }
   window.open('https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent(msg), '_blank');
 }
