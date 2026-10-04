@@ -163,7 +163,7 @@ main{max-width:920px;margin:0 auto;padding:10px 14px 16px;}
 /* DRAWER */
 .welcome-overlay{position:fixed;inset:0;background:rgba(10,10,20,0.6);z-index:400;display:flex;align-items:center;justify-content:center;padding:20px;}
 .welcome-overlay.hide{display:none;}
-.welcome-box{background:#fff;border-radius:20px;padding:30px 24px;max-width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+.welcome-box{background:#fff;border-radius:20px;padding:30px 24px;max-width:380px;max-height:90vh;overflow-y:auto;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
 .welcome-emoji{font-size:44px;margin-bottom:6px;}
 .welcome-box h2{font-size:22px;font-weight:900;margin-bottom:10px;}
 .welcome-box p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
@@ -313,14 +313,26 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     <div id="custNewForm" class="hide">
       <h2>פרטים ראשוניים</h2>
       <p>נצטרך כמה פרטים בשביל המשלוח והחשבונית 😊</p>
-      <input type="text" id="custAddress" placeholder="כתובת למשלוח / עיר">
-      <input type="text" id="custInvoiceName" placeholder="שם לחשבונית">
       <input type="text" id="custContact1Name" placeholder="שם איש קשר לקבלת המשלוח">
-      <input type="tel" id="custContact1Phone" placeholder="טלפון איש קשר">
+      <input type="tel" id="custContact1Phone" placeholder="טלפון איש קשר *">
+      <input type="text" id="custInvoiceName" placeholder="שם לחשבונית">
+      <input type="email" id="custEmail" placeholder="אימייל (לא חובה)">
+      <input type="text" id="custCity" placeholder="ישוב *">
+      <input type="text" id="custStreet" placeholder="רחוב *">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="custHouse" placeholder="מספר בית *" style="flex:1;">
+        <input type="text" id="custEntrance" placeholder="כניסה" style="flex:1;">
+      </div>
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="custFloor" placeholder="קומה" style="flex:1;">
+        <input type="text" id="custApartment" placeholder="דירה" style="flex:1;">
+      </div>
+      <input type="text" id="custLobbyCode" placeholder="קוד ללובי (לא חובה)">
+      <input type="text" id="custDeliveryNotes" placeholder="הערות למשלוח / לשליח (לא חובה)">
       <input type="text" id="custContact2Name" placeholder="איש קשר נוסף (לא חובה)">
       <input type="tel" id="custContact2Phone" placeholder="טלפון איש קשר נוסף (לא חובה)">
       <select id="custPayment">
-        <option value="">אופן תשלום...</option>
+        <option value="">אופן תשלום... *</option>
         <option value="העברה בנקאית">העברה בנקאית</option>
         <option value="ביט">ביט</option>
         <option value="פייבוקס">פייבוקס</option>
@@ -1072,22 +1084,39 @@ function chooseNew() {
   document.getElementById('custNewForm').classList.remove('hide');
 }
 function submitNewCustomer() {
-  const address = document.getElementById('custAddress').value.trim();
-  const invoiceName = document.getElementById('custInvoiceName').value.trim();
   const c1name = document.getElementById('custContact1Name').value.trim();
   const c1phone = document.getElementById('custContact1Phone').value.trim();
+  const invoiceName = document.getElementById('custInvoiceName').value.trim();
+  const email = document.getElementById('custEmail').value.trim();
+  const city = document.getElementById('custCity').value.trim();
+  const street = document.getElementById('custStreet').value.trim();
+  const house = document.getElementById('custHouse').value.trim();
+  const entrance = document.getElementById('custEntrance').value.trim();
+  const floor = document.getElementById('custFloor').value.trim();
+  const apartment = document.getElementById('custApartment').value.trim();
+  const lobbyCode = document.getElementById('custLobbyCode').value.trim();
+  const deliveryNotes = document.getElementById('custDeliveryNotes').value.trim();
   const c2name = document.getElementById('custContact2Name').value.trim();
   const c2phone = document.getElementById('custContact2Phone').value.trim();
   const payment = document.getElementById('custPayment').value;
-  if (!address || !invoiceName || !c1phone) {
-    alert('נא למלא לפחות כתובת למשלוח, שם לחשבונית וטלפון איש קשר');
+  if (!c1phone || !city || !street || !house || !payment) {
+    alert('נא למלא לפחות טלפון איש קשר, ישוב, רחוב, מספר בית ואופן תשלום');
     return;
   }
-  let details = `👤 *לקוח חדש*\n• כתובת למשלוח: ${address}\n• שם לחשבונית: ${invoiceName}\n• איש קשר: ${c1name || '—'} - ${c1phone}\n`;
+  let details = `👤 *לקוח חדש*\n`;
+  details += `• איש קשר: ${c1name || '—'} - ${c1phone}\n`;
+  if (invoiceName) details += `• שם לחשבונית: ${invoiceName}\n`;
+  if (email) details += `• אימייל: ${email}\n`;
+  details += `• ישוב: ${city}\n`;
+  details += `• רחוב: ${street}\n`;
+  details += `• בית: ${house}` + (entrance ? ` | כניסה: ${entrance}` : '') + (lobbyCode ? ` | קוד לובי: ${lobbyCode}` : '') + `\n`;
+  if (floor || apartment) details += `• קומה: ${floor || '—'} | דירה: ${apartment || '—'}\n`;
+  if (deliveryNotes) details += `• הערות למשלוח: ${deliveryNotes}\n`;
   if (c2phone) details += `• איש קשר נוסף: ${c2name || '—'} - ${c2phone}\n`;
-  if (payment) details += `• אופן תשלום: ${payment}\n`;
+  details += `• אופן תשלום: ${payment}\n`;
   closeCustomerModal();
-  finalizeOrder(details, {name: c1name || invoiceName, phone: c1phone, business: invoiceName, city: address});
+  const addressNote = [street, 'בית ' + house, entrance ? 'כניסה ' + entrance : '', lobbyCode ? 'קוד לובי ' + lobbyCode : '', floor ? 'קומה ' + floor : '', apartment ? 'דירה ' + apartment : '', deliveryNotes].filter(Boolean).join(', ');
+  finalizeOrder(details, {name: c1name || invoiceName, phone: c1phone, business: invoiceName, email, city, addressNote});
 }
 function finalizeOrder(customerNote, sheetFields) {
   const subtotal = cart.reduce((s,i) => s + i.price * i.qty, 0);
@@ -1110,9 +1139,14 @@ function finalizeOrder(customerNote, sheetFields) {
   }
   if (sheetFields) {
     const couponNote = appliedCoupon ? ' | קופון: ' + appliedCoupon.code + ' (-₪' + discountAmount + ')' : '';
-    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות', agent:getAgentLabel(), note:'הזמנה מהאתר - ₪' + total + couponNote});
+    const addrNote = sheetFields.addressNote ? ' | כתובת: ' + sheetFields.addressNote : '';
+    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות', agent:getAgentLabel(), note:'הזמנה מהאתר - ₪' + total + couponNote + addrNote});
   }
   window.open('https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent(msg), '_blank');
+  const agentId = new URLSearchParams(location.search).get('agent') || '1';
+  cart = [];
+  updateCartUI();
+  window.location.href = 'thank-you.html?agent=' + agentId + '&total=' + total;
 }
 
 // ══ LEAD FORM ══
