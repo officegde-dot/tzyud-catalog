@@ -160,6 +160,13 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);min-h
 
 footer{text-align:center;font-size:11px;color:var(--muted);padding:20px 20px 90px;}
 
+/* floating WhatsApp - שיחה עם נציג (מעל סרגל ההזמנה) */
+.wa-float{position:fixed;bottom:88px;left:14px;z-index:200;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,0.5);text-decoration:none;transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+.wa-tip{position:absolute;left:60px;background:#111;color:#fff;font-size:11px;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none;}
+.wa-float:hover .wa-tip{opacity:1;}
+
 .bf-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);max-width:92%;width:340px;background:#111827;color:#fff;font-size:13px;font-weight:700;text-align:center;line-height:1.5;padding:13px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,0.35);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;}
 .bf-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
@@ -245,6 +252,11 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 </div>
 
 <footer>© 2026 אלף רייש שיווק פרסום ויחצ | כל הזכויות שמורות</footer>
+<a href="https://wa.me/972527576337" target="_blank" class="wa-float" id="waFloat" aria-label="שיחה עם נציג בוואטסאפ">
+  <span class="wa-tip">💬 שאלה? דברו עם נציג</span>
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 0C5.37 0 0 5.37 0 12c0 2.12.554 4.11 1.522 5.845L0 24l6.345-1.497A11.94 11.94 0 0 0 11.99 24C18.62 24 24 18.63 24 12S18.62 0 11.99 0z"/></svg>
+</a>
+
 
 <div class="overlay hide" id="overlay" onclick="closeDrawer()"></div>
 <div class="drawer hide" id="drawer">
@@ -365,6 +377,7 @@ function getAgentLabel() {
   const id = new URLSearchParams(location.search).get('agent');
   return AGENT_LABELS[id] || AGENT_LABELS['1'];
 }
+document.getElementById('waFloat').href = 'https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent('היי, אשמח לשאול לגבי מבצעי הבלאק פריידי 🔥');
 
 // ══ FIXED BUNDLES (קרטונים קבועים + מחיר קבוע, חלוקה לפי מידה) ══
 // ══ GROUPED BUNDLE DEALS (קבוצה → צבע/סוג → כמויות) ══
