@@ -66,6 +66,7 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);min-h
 .card-name{font-size:14.5px;font-weight:800;line-height:1.3;}
 .card-price-row{display:flex;align-items:baseline;gap:6px;margin-top:6px;}
 .card-price{font-size:22px;font-weight:900;color:var(--pink);}
+.card-price-old{font-size:15px;font-weight:700;color:var(--muted);text-decoration-color:#EF4444;text-decoration-thickness:2px;}
 .card-price-unit{font-size:12px;color:var(--muted);font-weight:600;}
 .card-note{font-size:11px;color:var(--muted);margin-top:4px;}
 
@@ -97,6 +98,8 @@ body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--text);min-h
 .color-thumb{width:44px;height:44px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#f1f1f1;}
 .color-info{flex:1;min-width:110px;}
 .color-name{font-size:13px;font-weight:800;}
+.mask-pref{width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:12.5px;font-family:'Heebo',sans-serif;background:#fff;color:var(--text);text-align:right;}
+.mask-pref:focus{outline:none;border-color:var(--gold);}
 .color-sublabel{font-size:10.5px;font-weight:700;color:var(--muted);background:#F3F4F6;padding:2px 7px;border-radius:50px;}
 .tier-chips{display:flex;gap:6px;flex-wrap:wrap;}
 .tier-chip{border:none;background:linear-gradient(135deg,#1a0a2e,#08080f);border-radius:12px;padding:8px 12px;cursor:pointer;font-family:'Heebo',sans-serif;color:#fff;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:1px;box-shadow:0 3px 10px rgba(0,0,0,0.25);}
@@ -222,6 +225,7 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
       <div style="font-size:11px;color:var(--muted);margin-top:2px;" id="maskNote"></div>
     </div>
     <button class="tier-chip" id="masktoggle" onclick="toggleMask()">הוספה — ₪399</button>
+    <input type="text" id="maskPref" class="mask-pref" maxlength="10" placeholder="העדפת צבעים (עד 10 תווים)" oninput="updateMaskPref()">
   </div>
 </div>
 
@@ -229,7 +233,7 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
   <div class="bf-small-banner-title">🔥 גם זה בלאק פריידי! 🔥</div>
   <div class="bf-small-banner-sub">דאגנו גם לכמויות קטנות — לא חייבים חבילת ענק כדי ליהנות מההנחה</div>
 </div>
-<div class="sec-title"><h2>💙 כל סוגי הכפפות — מחיר מוזל</h2><span>כבר החל מ-2 קרטונים בלבד · ₪20 הנחה לקרטון</span></div>
+<div class="sec-title"><h2>💙 כל סוגי הכפפות — מחיר מוזל</h2><span>כבר החל מ-2 קרטונים בלבד · הנחה על כל קרטון</span></div>
 <div class="grid" id="flexGrid"></div>
 
 <div class="order-bar">
@@ -366,12 +370,12 @@ function getAgentLabel() {
 // ══ GROUPED BUNDLE DEALS (קבוצה → צבע/סוג → כמויות) ══
 const GROUPS = [
   { title:'ניטריל 3.5 גרם', items:[
-    { id:'pink',    name:'ניטריל ורוד פוקסיה', img:'pink',  basePrice:240, sizes:['S','M','L'],            tiers:[{qty:4,price:849},{qty:6,price:999},{qty:10,price:1599}] },
-    { id:'black35', name:'ניטריל שחור',        img:'black1', basePrice:200, sizes:['XS','S','M','L','XL'],  tiers:[{qty:4,price:699},{qty:6,price:999},{qty:10,price:1499}] },
-    { id:'blue',    name:'ניטריל כחול',        img:'blue1',  basePrice:200, sizes:['XS','S','M','L','XL'],  tiers:[{qty:4,price:699},{qty:6,price:999},{qty:10,price:1399}] },
+    { id:'pink',    name:'ניטריל ורוד פוקסיה', img:'pink',  basePrice:240, sizes:['S','M','L'],            tiers:[{qty:4,price:889},{qty:6,price:1199},{qty:10,price:1799}] },
+    { id:'black35', name:'ניטריל שחור',        img:'black1', basePrice:200, sizes:['XS','S','M','L','XL'],  tiers:[{qty:4,price:699},{qty:6,price:949},{qty:10,price:1499}] },
+    { id:'blue',    name:'ניטריל כחול',        img:'blue1',  basePrice:200, sizes:['XS','S','M','L','XL'],  tiers:[{qty:4,price:699},{qty:6,price:949},{qty:10,price:1449}] },
   ]},
   { title:'ניטריל 6 גרם — Double PRO MAX', items:[
-    { id:'black6', name:'ניטריל שחור', sublabel:'6 גרם', img:'black_thick', basePrice:270, sizes:['S','M','L','XL'], tiers:[{qty:4,price:949},{qty:6,price:1399}] },
+    { id:'black6', name:'ניטריל שחור', sublabel:'6 גרם', img:'black_thick', basePrice:270, sizes:['S','M','L','XL'], tiers:[{qty:4,price:949},{qty:6,price:1349}] },
   ]},
   { title:'לטקס לבן', items:[
     { id:'latexnp', name:'ללא אבקה', img:'latex_nopowder', basePrice:240, sizes:['S','M','L','XL'], tiers:[{qty:4,price:849},{qty:6,price:1249}] },
@@ -384,15 +388,15 @@ const GROUPS = [
 
 const MASK_BUNDLE = { id:'b_masks3', name:'מסכות 3 שכבות — מגוון צבעים', cartons:3, price:399, img:'mask_colors', note:'הצבעים לפי מלאי קיים' };
 
-// ══ FLEXIBLE GLOVES (כמו בקטלוג הראשי, מחיר קרטון מוזל ב-₪20) ══
+// ══ FLEXIBLE GLOVES (כמו בקטלוג הראשי, מחיר רגיל מחוק + מחיר מבצע) ══
 const FLEX_GLOVES = [
-  { id:'f_blue',      name:'ניטריל כחול 3.5 גרם',              price:180, sizes:['XS','S','M','L','XL'], img:'blue1' },
-  { id:'f_black35',   name:'ניטריל שחור 3.5 גרם',              price:180, sizes:['XS','S','M','L','XL'], img:'black1' },
-  { id:'f_black6',    name:'ניטריל שחור 6 גרם — Double PRO MAX', price:250, sizes:['S','M','L','XL'], img:'black_thick' },
-  { id:'f_pink',      name:'ניטריל ורוד פוקסיה 3.5 גרם',        price:220, sizes:['S','M','L'], img:'pink' },
-  { id:'f_latexnp',   name:'לטקס לבן — ללא אבקה',               price:220, sizes:['S','M','L','XL'], img:'latex_nopowder' },
-  { id:'f_latexp',    name:'לטקס לבן — עם אבקה',                price:220, sizes:['S','M','L','XL'], img:'latex_powder' },
-  { id:'f_vinyl',     name:'ויניל שקוף — ללא אבקה',             price:160, sizes:['S','M','L','XL'], img:'glove_vinyl_real' },
+  { id:'f_blue',      name:'ניטריל כחול 3.5 גרם',              regPrice:200, price:179, sizes:['XS','S','M','L','XL'], img:'blue1' },
+  { id:'f_black35',   name:'ניטריל שחור 3.5 גרם',              regPrice:200, price:179, sizes:['XS','S','M','L','XL'], img:'black1' },
+  { id:'f_black6',    name:'ניטריל שחור 6 גרם — Double PRO MAX', regPrice:270, price:249, sizes:['S','M','L','XL'], img:'black_thick' },
+  { id:'f_pink',      name:'ניטריל ורוד פוקסיה 3.5 גרם',        regPrice:240, price:219, sizes:['S','M','L'], img:'pink' },
+  { id:'f_latexnp',   name:'לטקס לבן — ללא אבקה',               regPrice:240, price:219, sizes:['S','M','L','XL'], img:'latex_nopowder' },
+  { id:'f_latexp',    name:'לטקס לבן — עם אבקה',                regPrice:240, price:219, sizes:['S','M','L','XL'], img:'latex_powder' },
+  { id:'f_vinyl',     name:'ויניל שקוף — ללא אבקה',             regPrice:180, price:159, sizes:['S','M','L','XL'], img:'glove_vinyl_real' },
 ];
 const FLEX_MIN_CARTONS = 2;
 
@@ -402,7 +406,7 @@ let flexCart = [];    // [{ name, qty, price }]
 let bmCurrent = null;  // מצב זמני של חלון בחירת המידות הפתוח
 
 try {
-  const saved = localStorage.getItem('bf_state');
+  const saved = localStorage.getItem('bf_state_v2');
   if (saved) {
     const parsed = JSON.parse(saved);
     cart = parsed.cart || [];
@@ -412,7 +416,7 @@ try {
 
 function saveState() {
   try {
-    localStorage.setItem('bf_state', JSON.stringify({cart, flexCart}));
+    localStorage.setItem('bf_state_v2', JSON.stringify({cart, flexCart}));
   } catch (e) { console.error('שמירת מצב בלאק פריידי נכשלה:', e); }
 }
 
@@ -534,8 +538,19 @@ function confirmAddBundle() {
 function toggleMask() {
   const idx = cart.findIndex(i => i.type === 'mask');
   if (idx >= 0) cart.splice(idx, 1);
-  else cart.push({uid:'mask', type:'mask', name: MASK_BUNDLE.name, qty: MASK_BUNDLE.cartons, price: MASK_BUNDLE.price, breakdown: MASK_BUNDLE.note});
+  else cart.push({uid:'mask', type:'mask', name: MASK_BUNDLE.name, qty: MASK_BUNDLE.cartons, price: MASK_BUNDLE.price, breakdown: maskBreakdown()});
   refreshMaskButton();
+  updateOrderBar();
+}
+function maskBreakdown() {
+  const pref = document.getElementById('maskPref').value.trim();
+  return pref ? MASK_BUNDLE.note + ' | העדפה: ' + pref : MASK_BUNDLE.note;
+}
+// עדכון ההערה גם אם הלקוח כתב אותה אחרי שהמסכות כבר בסל
+function updateMaskPref() {
+  const item = cart.find(i => i.type === 'mask');
+  if (!item) return;
+  item.breakdown = maskBreakdown();
   updateOrderBar();
 }
 
@@ -545,7 +560,7 @@ function buildFlexCard(p) {
     <img class="card-img" src="${IMGS[p.img]||''}" alt="">
     <div class="card-body">
       <div class="card-name">${p.name}</div>
-      <div class="card-price-row"><span class="card-price">₪${p.price}</span><span class="card-price-unit">לקרטון (10 חבילות)</span></div>
+      <div class="card-price-row"><del class="card-price-old">₪${p.regPrice}</del><span class="card-price">₪${p.price}</span><span class="card-price-unit">לקרטון (10 חבילות)</span></div>
       <div class="size-chips">${chips}</div>
       <div class="flex-qty-row">
         <button class="alloc-btn" onclick="flexQtyChange(this,-1)">−</button>
