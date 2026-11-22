@@ -118,9 +118,18 @@ body{font-family:'Heebo',sans-serif;background-color:var(--night);background-ima
 
 /* המסך השקוף מתחת לכל מתנה */
 .gr-glasses{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:6px;max-height:0;overflow:hidden;transition:max-height .6s ease .6s,padding .6s ease .6s;}
-.gift-row.open .gr-glasses{max-height:320px;padding:10px 0 12px;}
+.gift-row.open .gr-glasses{max-height:460px;padding:10px 0 12px;}
 .glass{background:rgba(255,255,255,0.1);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.24);border-radius:12px;padding:8px 6px;text-align:center;font-size:10.5px;line-height:1.45;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:1px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.15),0 6px 16px rgba(0,0,0,0.25);}
 .glass-name{font-weight:900;font-size:11px;color:#fff;margin-bottom:2px;}
+.glass-prices{margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.18);display:flex;flex-direction:column;gap:1px;}
+.glass-was{font-size:10px;color:rgba(255,255,255,0.6);}
+.glass-was del{text-decoration-color:#EF4444;text-decoration-thickness:2px;font-weight:700;}
+.glass-now{font-size:10px;color:var(--gold2);font-weight:700;}
+.glass-now b{display:block;font-size:15px;font-weight:900;color:#fff;}
+.glass-ship{margin-top:4px;font-size:10px;font-weight:800;color:#6EE7B7;}
+.order-extras{display:flex;flex-wrap:wrap;gap:2px 10px;}
+.order-ship{font-size:11.5px;font-weight:800;color:var(--green2);}
+.hero-ship{display:inline-block;margin-top:12px;background:rgba(16,185,129,0.16);border:1px solid rgba(110,231,183,0.5);color:#A7F3D0;font-size:13.5px;font-weight:800;padding:5px 14px;border-radius:50px;}
 .glass-save{margin-top:4px;font-weight:900;color:#1a0f00;background:linear-gradient(135deg,#FFD700,#F59E0B);border-radius:50px;padding:1px 8px;align-self:center;}
 .glass-cta{margin-top:7px;background:#fff;color:#111;border:none;border-radius:8px;padding:6px 4px;font-size:10.5px;font-weight:900;font-family:inherit;cursor:pointer;}
 
@@ -194,8 +203,11 @@ body{font-family:'Heebo',sans-serif;background-color:var(--night);background-ima
 /* sticky order bar */
 .order-bar{position:sticky;bottom:0;z-index:100;background:#fff;color:var(--text);border-top:3px solid;border-image:linear-gradient(90deg,#FFD700,#F59E0B,#F97316) 1;padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 -4px 16px rgba(0,0,0,0.25);margin-top:26px;}
 .order-info{flex:1;}
-.order-count{font-size:13px;font-weight:700;}
-.order-total{font-size:18px;font-weight:900;background:linear-gradient(135deg,#F59E0B,#F97316);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.order-count{font-size:12px;font-weight:700;color:var(--muted);}
+.order-total{display:inline-block;font-size:21px;font-weight:900;line-height:1.15;color:#EA580C;}
+.order-total.bump{animation:totalBump .5s ease;}
+@keyframes totalBump{0%,100%{transform:scale(1)}40%{transform:scale(1.18)}}
+.order-saved{font-size:11.5px;font-weight:800;color:var(--green2);}
 .order-send{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;padding:13px 20px;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:'Heebo',sans-serif;flex-shrink:0;}
 .order-send:disabled{background:#CBD5E1;cursor:not-allowed;}
 
@@ -231,6 +243,12 @@ body{font-family:'Heebo',sans-serif;background-color:var(--night);background-ima
 .welcome-btn-outline{background:#fff;color:var(--pink);border:2px solid var(--pink);box-shadow:none;}
 .welcome-box input,.welcome-box select{width:100%;padding:11px 14px;margin-bottom:9px;border:1.5px solid var(--border);border-radius:10px;font-size:13.5px;font-family:'Heebo',sans-serif;background:#fff;color:var(--text);text-align:right;}
 .welcome-box input:focus,.welcome-box select:focus{outline:none;border-color:var(--pink);}
+.welcome-box input[type=tel]{direction:rtl;}
+.form-row{display:flex;gap:8px;}
+.form-row>input{flex:1;min-width:0;}
+.form-sep{font-size:11.5px;font-weight:800;color:var(--muted);text-align:right;margin:6px 2px 6px;padding-top:6px;border-top:1px dashed var(--border);}
+.form-sep.first{border-top:none;padding-top:0;}
+.welcome-box .field-err{border-color:#EF4444;background:#FEF2F2;}
 
 footer{text-align:center;font-size:11px;color:var(--ink2);padding:20px 20px 90px;}
 
@@ -286,7 +304,8 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     <div class="bf-logo">BLACK<span>NOVEMBER</span></div>
     <div class="eyebrow">🎁 מתנות ענק לזמן מוגבל 🎁</div>
     <h1>המתנות של <span>בלאק נובמבר</span></h1>
-    <div class="hero-sub">חבילות קרטונים שנפתחות כמו מתנה · כל המחירים כוללים מע״מ ומשלוח</div>
+    <div class="hero-sub">חבילות קרטונים שנפתחות כמו מתנה · המחירים כוללים מע״מ</div>
+    <div class="hero-ship">🚚 משלוח חינם</div>
   </div>
 </div>
 
@@ -294,6 +313,18 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
   <div class="notice">
     <span class="notice-ico">🪄</span>
     <p><strong>איך זה עובד:</strong> בכל שורה גוררים את הכפפה אל הכפתור האדום. המתנות נפתחות והמחירים קופצים החוצה. לוחצים על המתנה שבחרתם, מחלקים למידות ומוסיפים לסל.</p>
+  </div>
+</div>
+
+<div class="wrap" style="margin-top:10px;">
+  <div class="notice">
+    <span class="notice-ico">🚚</span>
+    <p><strong>על המשלוח</strong><br>
+    עקב המצב, זמני האספקה עשויים להשתנות.<br>
+    כשההזמנה יוצאת לדרך תקבלו <strong>SMS מחברת השליחויות</strong> עם קישור למעקב ועדכונים שוטפים על החבילה.<br>
+    📦 <strong>רוצים שהחבילה תישאר ליד הדלת?</strong> סמנו זאת <strong>בקישור שיגיע אליכם ב-SMS</strong>.<br>
+    נשמח שתהיו זמינים בטלפון ביום המסירה 🙏<br>
+    📍 לאילת, לערבה וליישובים מרוחקים: משלוח בתוספת תשלום.</p>
   </div>
 </div>
 
@@ -338,7 +369,8 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
     עקב המצב, זמני האספקה עשויים להשתנות.<br>
     כשההזמנה יוצאת לדרך תקבלו <strong>SMS מחברת השליחויות</strong> עם קישור למעקב ועדכונים שוטפים על החבילה.<br>
     📦 <strong>רוצים שהחבילה תישאר ליד הדלת?</strong> סמנו זאת <strong>בקישור שיגיע אליכם ב-SMS</strong>.<br>
-    נשמח שתהיו זמינים בטלפון ביום המסירה 🙏</p>
+    נשמח שתהיו זמינים בטלפון ביום המסירה 🙏<br>
+    📍 לאילת, לערבה וליישובים מרוחקים: משלוח בתוספת תשלום.</p>
   </div>
 </div>
 
@@ -353,8 +385,9 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 
 <div class="order-bar">
   <div class="order-info">
-    <div class="order-count" id="orderCount">0 פריטים נבחרו</div>
-    <div class="order-total" id="orderTotal">₪0</div>
+    <div class="order-count" id="orderCount">הסל ריק</div>
+    <div class="order-total" id="orderTotal">סה״כ ₪0</div>
+    <div class="order-extras"><span class="order-saved" id="orderSaved"></span><span class="order-ship">🚚 משלוח חינם</span></div>
   </div>
   <button class="order-send" id="orderSendBtn" disabled onclick="openDrawer()">🛒 צפייה בהזמנה</button>
 </div>
@@ -396,41 +429,22 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
 <div id="customerModal" class="welcome-overlay hide">
   <div class="welcome-box">
     <button class="modal-close-x" onclick="closeCustomerModal()" aria-label="סגירה">✕</button>
-    <div id="custChoiceView">
-      <div class="welcome-emoji">🙋</div>
-      <h2>רק שנייה לפני השליחה</h2>
-      <p>האם אתם לקוחות חדשים או לקוחות קיימים אצלנו?</p>
-      <button class="welcome-btn" onclick="chooseExisting()">✅ לקוח קיים</button>
-      <button class="welcome-btn welcome-btn-outline" onclick="chooseNew()">🆕 לקוח חדש</button>
-    </div>
-    <div id="custExistingForm" class="hide">
-      <h2>רק נזדהה 🙋</h2>
-      <p>כמה פרטים כדי שנדע מי שלח את ההזמנה</p>
-      <input type="text" id="existName" placeholder="שם מלא / שם העסק *">
-      <input type="tel" id="existPhone" placeholder="טלפון *">
-      <button class="welcome-btn" onclick="submitExistingCustomer()">📩 שליחת ההזמנה</button>
-    </div>
-    <div id="custNewForm" class="hide">
-      <h2>פרטים ראשוניים</h2>
-      <p>נצטרך כמה פרטים בשביל המשלוח והחשבונית 😊</p>
-      <input type="text" id="custContact1Name" placeholder="שם איש קשר לקבלת המשלוח">
-      <input type="tel" id="custContact1Phone" placeholder="טלפון איש קשר *">
-      <input type="text" id="custInvoiceName" placeholder="שם לחשבונית">
-      <input type="email" id="custEmail" placeholder="אימייל (לא חובה)">
-      <input type="text" id="custCity" placeholder="ישוב *">
-      <input type="text" id="custStreet" placeholder="רחוב *">
-      <div style="display:flex;gap:8px;">
-        <input type="text" id="custHouse" placeholder="מספר בית *" style="flex:1;">
-        <input type="text" id="custEntrance" placeholder="כניסה" style="flex:1;">
+    <div id="custNewForm">
+      <div class="welcome-emoji">📦</div>
+      <h2>פרטים למשלוח</h2>
+      <p>רק כמה פרטים ומתנה בדרך אליכם 😊</p>
+
+      <div class="form-sep first">חובה *</div>
+      <div class="form-row">
+        <input type="text" id="custContact1Name" placeholder="שם מלא *" autocomplete="name">
+        <input type="tel" id="custContact1Phone" placeholder="טלפון *" autocomplete="tel" inputmode="tel">
       </div>
-      <div style="display:flex;gap:8px;">
-        <input type="text" id="custFloor" placeholder="קומה" style="flex:1;">
-        <input type="text" id="custApartment" placeholder="דירה" style="flex:1;">
+      <input type="text" id="custCity" list="cityList" placeholder="ישוב * (התחילו להקליד ובחרו מהרשימה)" autocomplete="off" onchange="fixCityField()">
+      <datalist id="cityList"></datalist>
+      <div class="form-row">
+        <input type="text" id="custStreet" placeholder="רחוב *" autocomplete="address-line1" style="flex:2;">
+        <input type="text" id="custHouse" placeholder="מס' בית *" inputmode="numeric" style="flex:1;">
       </div>
-      <input type="text" id="custLobbyCode" placeholder="קוד ללובי (לא חובה)">
-      <input type="text" id="custDeliveryNotes" placeholder="הערות למשלוח / לשליח (לא חובה)">
-      <input type="text" id="custContact2Name" placeholder="איש קשר נוסף (לא חובה)">
-      <input type="tel" id="custContact2Phone" placeholder="טלפון איש קשר נוסף (לא חובה)">
       <select id="custPayment">
         <option value="">אופן תשלום... *</option>
         <option value="העברה בנקאית">העברה בנקאית</option>
@@ -439,6 +453,21 @@ src="https://www.facebook.com/tr?id=323534090603684&ev=PageView&noscript=1"
         <option value="מזומן לשליח">מזומן לשליח</option>
         <option value="אחר">אחר</option>
       </select>
+
+      <div class="form-sep">פרטים נוספים (לא חובה)</div>
+      <input type="text" id="custInvoiceName" placeholder="שם לחשבונית / שם העסק">
+      <div class="form-row">
+        <input type="text" id="custEntrance" placeholder="כניסה">
+        <input type="text" id="custFloor" placeholder="קומה" inputmode="numeric">
+        <input type="text" id="custApartment" placeholder="דירה" inputmode="numeric">
+      </div>
+      <input type="text" id="custLobbyCode" placeholder="קוד ללובי">
+      <input type="text" id="custDeliveryNotes" placeholder="הערות לשליח">
+      <input type="email" id="custEmail" placeholder="אימייל" autocomplete="email">
+      <div class="form-row">
+        <input type="text" id="custContact2Name" placeholder="איש קשר נוסף">
+        <input type="tel" id="custContact2Phone" placeholder="טלפון נוסף" inputmode="tel">
+      </div>
       <button class="welcome-btn" onclick="submitNewCustomer()">📩 שליחת ההזמנה</button>
     </div>
   </div>
@@ -530,6 +559,14 @@ const MASK_BUNDLE = { id:'b_masks3', name:'מסכות 3 שכבות — צבעי�
   price:399, catalogPackPrice:4, colors:'שחור, תכלת, ורוד, סגול, אפור, מנומר', note:'הצבעים לפי מלאי קיים' };
 
 const fmt = n => n.toLocaleString('en-US');
+// מחיר מקורי מחוק + מחיר בלאק נובמבר + אחוז חיסכון (בחלון השקוף)
+const glassPriceHTML = (worth, price, pct) => `
+  <div class="glass-prices">
+    <div class="glass-was">מחיר רגיל: <del>₪${fmt(worth)}</del></div>
+    <div class="glass-now">מחיר בלאק נובמבר<b>₪${fmt(price)}</b></div>
+  </div>
+  <div class="glass-save">🔥 חיסכון ${pct}%</div>
+  <div class="glass-ship">🚚 משלוח חינם</div>`;
 const fullName = item => item.name + (item.sub ? ' ' + item.sub : '');
 // עיגול רגיל (8.5 → 9), עם תיקון לשגיאות עיגול של JS
 const roundPct = x => Math.round(x * 100 + 1e-9);
@@ -582,7 +619,7 @@ function giftRowHTML(item) {
       <div class="glass-name">${fullName(item)}</div>
       <div>${t.qty} קרטונים · ${t.qty * PACKS_PER_CARTON} חבילות</div>
       <div>${GLOVES_PER_PACK} כפפות בכל חבילה</div>
-      <div class="glass-save">🔥 חיסכון ${savePct(item, t)}%</div>
+      ${glassPriceHTML(t.qty * item.basePrice, t.price, savePct(item, t))}
       <button class="glass-cta" type="button">🛒 בחירת מידות</button>
     </div>`).join('');
   return `<div class="gift-row" id="row-${item.id}" style="--c:${item.c};--edge:${item.edge};--n:${item.tiers.length}">
@@ -770,15 +807,16 @@ const RABBIT_SVG = `<svg viewBox="0 0 80 100" aria-hidden="true">
 
 const mole = { running:false, caught:false, misses:0, cur:-1, timer:null };
 
+function maskWorth() { return MASK_BUNDLE.cartons * MASK_BUNDLE.packsPerCarton * MASK_BUNDLE.catalogPackPrice; }
 function renderMaskSection() {
-  const pct = roundPct(1 - MASK_BUNDLE.price / (MASK_BUNDLE.cartons * MASK_BUNDLE.packsPerCarton * MASK_BUNDLE.catalogPackPrice));
+  const pct = roundPct(1 - MASK_BUNDLE.price / maskWorth());
   document.getElementById('maskPrice').textContent = '₪' + fmt(MASK_BUNDLE.price);
   document.getElementById('maskGlass').innerHTML = `
     <div class="glass-name">מסכות 3 שכבות</div>
     <div>צבעים: ${MASK_BUNDLE.colors}</div>
     <div>${MASK_BUNDLE.cartons} קרטונים · ${MASK_BUNDLE.cartons * MASK_BUNDLE.packsPerCarton} חבילות</div>
     <div>${MASK_BUNDLE.perPack} מסכות בכל חבילה</div>
-    <div class="glass-save">🔥 חיסכון ${pct}%</div>`;
+    ${glassPriceHTML(maskWorth(), MASK_BUNDLE.price, pct)}`;
 
   const hats = document.getElementById('hats');
   hats.innerHTML = [0,1,2].map(i =>
@@ -875,7 +913,7 @@ function maskBreakdown() {
 function toggleMask() {
   const idx = cart.findIndex(i => i.type === 'mask');
   if (idx >= 0) cart.splice(idx, 1);
-  else cart.push({uid:'mask', type:'mask', name: MASK_BUNDLE.name, qty: MASK_BUNDLE.cartons, price: MASK_BUNDLE.price, breakdown: maskBreakdown()});
+  else cart.push({uid:'mask', type:'mask', name: MASK_BUNDLE.name, qty: MASK_BUNDLE.cartons, price: MASK_BUNDLE.price, worth: maskWorth(), breakdown: maskBreakdown()});
   refreshMaskButton();
   updateOrderBar();
 }
@@ -900,7 +938,7 @@ function openBundleModal(itemId, qty) {
   const tier = item.tiers.find(t => t.qty === qty);
   bmCurrent = { item, tier, alloc: {} };
   document.getElementById('bmTitle').textContent = '🎁 ' + fullName(item) + ' — ' + tier.qty + ' קרטונים';
-  document.getElementById('bmSub').textContent = '₪' + fmt(tier.price) + ' · כולל מע״מ ומשלוח — חלקו ' + tier.qty + ' קרטונים בין המידות';
+  document.getElementById('bmSub').textContent = '₪' + fmt(tier.price) + ' · כולל מע״מ · 🚚 משלוח חינם — חלקו ' + tier.qty + ' קרטונים בין המידות';
   const rows = item.sizes.map(s => `
     <div class="alloc-row">
       <span class="alloc-size">${s}</span>
@@ -961,6 +999,7 @@ function confirmAddBundle() {
     name: fullName(bmCurrent.item),
     qty: bmCurrent.tier.qty,
     price: bmCurrent.tier.price,
+    worth: bmCurrent.tier.qty * bmCurrent.item.basePrice,
     breakdown
   });
   closeBundleModal();
@@ -971,12 +1010,24 @@ function confirmAddBundle() {
 // ══ ORDER SUMMARY ══
 function orderTotal() { return cart.reduce((s,i) => s + i.price, 0); }
 function orderItemCount() { return cart.length; }
+// כמה הלקוח חוסך לעומת מחירי הקטלוג (פריט ישן בלי worth נחשב בלי חיסכון)
+function orderSavings() { return cart.reduce((s,i) => s + Math.max(0, (i.worth || i.price) - i.price), 0); }
+let lastShownTotal = null;
 function updateOrderBar() {
   saveState();
   const count = orderItemCount();
-  document.getElementById('orderCount').textContent = count + ' פריטים נבחרו';
-  document.getElementById('orderTotal').textContent = '₪' + fmt(orderTotal());
+  const total = orderTotal();
+  const saved = orderSavings();
+  document.getElementById('orderCount').textContent = count === 0 ? 'הסל ריק' : (count === 1 ? 'מתנה אחת בסל' : count + ' מתנות בסל');
+  const totalEl = document.getElementById('orderTotal');
+  totalEl.textContent = 'סה״כ ₪' + fmt(total);
+  document.getElementById('orderSaved').textContent = saved > 0 ? '🔥 חסכתם ₪' + fmt(saved) : '';
   document.getElementById('orderSendBtn').disabled = count === 0;
+  // קפיצה קטנה כשהסכום משתנה, כדי שהלקוח ישים לב
+  if (lastShownTotal !== null && lastShownTotal !== total) {
+    totalEl.classList.remove('bump'); void totalEl.offsetWidth; totalEl.classList.add('bump');
+  }
+  lastShownTotal = total;
   renderDrawer();
 }
 
@@ -1002,38 +1053,58 @@ function closeDrawer() {
   document.getElementById('overlay').classList.add('hide');
 }
 
+// רשימת הישובים הרשמית (למ"ס, data.gov.il) — 1316 ישובים
+const CITIES = ["אבו ג\u0027ווייעד (שבט)","אבו גוש","אבו סנאן","אבו סריחאן (שבט)","אבו עבדון (שבט)","אבו עמאר (שבט)","אבו עמרה (שבט)","אבו קורינאת (שבט)","אבו קרינאת (יישוב)","אבו רובייעה (שבט)","אבו רוקייק (שבט)","אבו תלול","אבטין","אבטליון","אביאל","אביבים","אביגדור","אביגיל","אביה","אביחיל","אביטל","אביעזר","אבירים","אבן יהודה","אבן מנחם","אבן ספיר","אבן שמואל","אבני איתן","אבני חפץ","אבשלום","אדורה","אדוריים","אדירים","אדמית","אדרת","אובנת","אודים","אודם","אוהד","אום אל-פחם","אום אל-קוטוף","אום בטין","אומן","אומץ","אופקים","אור הגנוז","אור הנר","אור יהודה","אור עקיבא","אורה","אורות","אורטל","אורים","אורנים","אורנית","אושה","אזור","אחווה","אחוזם","אחוזת ברק","אחיה","אחיהוד","אחיטוב","אחיסמך","אחיעזר","אטרש (שבט)","איבי הנחל","איבים","אייל","איילת השחר","אילון","אילות","אילניה","אילת","אירוס","איתמר","איתן","איתנים","אכסאל","אל סייד","אלומה","אלומות","אלון","אלון הגליל","אלון מורה","אלון שבות","אלוני אבא","אלוני הבשן","אלוני יצחק","אלונים","אליאב","אליכין","אלי-עד","אליפז","אליפלט","אליקים","אלישיב","אלישמע","אלמגור","אלמוג","אלעד","אל-עזי","אלעזר","אל-עריאן","אלפי מנשה","אלקוש","אלקנה","אל-רום","אמונים","אמירים","אמנון","אמציה","אניעם","אסד (שבט)","אסיף","אספר","אעבלין","אעצם (שבט)","אפיניש (שבט)","אפיק","אפיקים","אפק","אפרת","ארבל","ארגמן","ארז","אריאל","ארסוף","אשבול","אשבל","אשדוד","אשדות יעקב (איחוד)","אשדות יעקב (מאוחד)","אשחר","אשכולות","אשל הנשיא","אשלים","אשקלון","אשרת","אשתאול","אתגר","באקה אל-גרביה","באר אורה","באר גנים","באר טוביה","באר יעקב","באר מילכה","באר שבע","בארות יצחק","בארותיים","בארי","בוסתן הגליל","בועיינה-נוג\u0027ידאת","בוקעאתא","בורגתה","בחן","בטחה","ביצרון","ביר אל-מכסור","ביר הדאג\u0027","ביריה","בית אורן","בית אל","בית אלעזרי","בית אלפא","בית אריה","בית ברל","בית גוברין","בית גמליאל","בית ג\u0027ן","בית דגן","בית הגדי","בית הלוי","בית הלל","בית העמק","בית הערבה","בית השיטה","בית זיד","בית זית","בית זרע","בית חוגלה","בית חורון","בית חירות","בית חלקיה","בית חנן","בית חנניה","בית חשמונאי","בית יהושע","בית יוסף","בית ינאי","בית יצחק-שער חפר","בית יתיר","בית לחם הגלילית","בית מאיר","בית נחמיה","בית ניר","בית נקופה","בית עובד","בית עוזיאל","בית עזרא","בית עריף","בית צבי","בית קמה","בית קשת","בית רבן","בית רימון","בית שאן","בית שמש","בית שערים","בית שקמה","ביתן אהרן","ביתר עילית","בלפוריה","בן זכאי","בן עמי","בן שמן (כפר נוער)","בן שמן (מושב)","בני ברק","בני דקלים","בני דרום","בני דרור","בני יהודה","בני נצרים","בני עטרות","בני עי\"ש","בני ציון","בני ראם","בניה","בנימינה-גבעת עדה","בסמ\"ה","בסמת טבעון","בענה","בצרה","בצת","בקוע","בקעות","בר גיורא","בר יוחאי","בר כוכבא","ברוכין","ברור חיל","ברוש","ברוש הבקעה","ברכה","ברכיה","ברעם","ברק","ברקאי","ברקן","ברקת","בת הדר","בת חן","בת חפר","בת ים","בת עין","בת שלמה","בתרון","גאולי תימן","גאולים","גאליה","גבולות","גבים","גבע","גבע בנימין","גבע כרמל","גבעולים","גבעון החדשה","גבעות","גבעות בר","גבעות הרואה","גבעות עדן","גבעת אבני","גבעת אלה","גבעת ברנר","גבעת השלושה","גבעת זאב","גבעת ח\"ן","גבעת חיים (איחוד)","גבעת חיים (מאוחד)","גבעת יואב","גבעת יערים","גבעת ישעיהו","גבעת כ\"ח","גבעת ניל\"י","גבעת עוז","גבעת שמואל","גבעת שמש","גבעת שפירא","גבעתי","גבעתיים","גברעם","גבת","גדות","ג\u0027דיידה-מכר","גדיש","גדעונה","גדרה","גודר","ג\u0027ולס","גונן","גורן","גורנות הגליל","גזית","גזר","גיאה","גיבתון","גיזו","גילון","גילת","גינוסר","גיניגר","גינתון","גיתה","גיתית","גלאון","ג\u0027לג\u0027וליה","גלגל","גליל ים","גלעד (אבן יצחק)","גמזו","גן הדרום","גן השומרון","גן חיים","גן יאשיה","גן יבנה","גן נר","גן שורק","גן שלמה","גן שמואל","ג\u0027נאביב (שבט)","גנות","גנות הדר","גני הדר","גני טל","גני יוחנן","גני מודיעין","גני עם","גני תקווה","גנים","ג\u0027סר א-זרקא","געש","געתון","גפן","גרופית","ג\u0027ש (גוש חלב)","גשור","גשר","גשר הזיו","ג\u0027ת","גת (קיבוץ)","גת רימון","דאלית אל-כרמל","דבורה","דבוריה","דביר","דברת","דגניה א\u0027","דגניה ב\u0027","דוב\"ב","דולב","דור","דורות","דחי","דייר אל-אסד","דייר חנא","דייר ראפאת","דימונה","דישון","דליה","דלתון","דמיידה","דן","דפנה","דקל","דריג\u0027את","האון","הבונים","הגושרים","הדר עם","הוד השרון","הודיה","הודיות","הוואשלה (שבט)","הוזייל (שבט)","הושעיה","הזורע","הזורעים","החותרים","היוגב","הילה","המעפיל","הסוללים","העוגן","הר אדר","הר בזק","הר גילה","הר עמשא","הראל","הרדוף","הרצליה","הררית","ורד יריחו","ורדון","זבארגה (שבט)","זבדיאל","זוהר","זיקים","זיתן","זכרון יעקב","זכריה","זמר","זמרת","זנוח","זרועה","זרזיר","זרחיה","חבצלת השרון","חבר","חברון","חגור","חגי","חגלה","חדיד","חד-נס","חדרה","ח\u0027ואלד","ח\u0027ואלד (שבט)","חוג\u0027ייראת (ד\u0027הרה)","חולדה","חולון","חולית","חולתה","חומש","חוסן","חוסנייה","חופית","חוקוק","חורה","חורפיש","חורשים","חזון","חיבת ציון","חיננית","חיפה","חירות","חלוץ","חלץ","חמאם","חמד","חמדיה","חמדת","חמרה","חניאל","חניתה","חנתון","חספין","חפץ חיים","חפצי-בה","חצב","חצבה","חצור הגלילית","חצור-אשדוד","חצרים","חרב לאת","חרוצים","חריש","חרמש","חרשה","חרשים","חשמונאים","טבריה","טובא-זנגריה","טורעאן","טייבה","טייבה (בעמק)","טירה","טירת יהודה","טירת כרמל","טירת צבי","טל מנשה","טל שחר","טל-אל","טללים","טלמון","טמרה","טמרה (יזרעאל)","טנא","טפחות","יאנוח-ג\u0027ת","יבול","יבנאל","יבנה","יגור","יגל","יד בנימין","יד השמונה","יד חנה","יד מרדכי","יד נתן","יד רמב\"ם","ידידה","יהוד-מונוסון","יהל","יובל","יובלים","יודפת","יונדב","יונתן","יושיביה","יזרעאל","יחיעם","יטבתה","ייט\"ב","יכיני","ינוב","ינון","יסוד המעלה","יסודות","יסעור","יעד","יעל","יעף","יערה","יפיע","יפית","יפעת","יפתח","יצהר","יציץ","יקום","יקיר","יקנעם (מושבה)","יקנעם עילית","יראון","ירדנה","ירוחם","ירושלים","ירחיב","ירכא","ירקונה","ישע","ישעי","ישרש","יתד","כאבול","כאוכב אבו אל-היג\u0027א","כברי","כדורי","כדים","כדיתה","כוכב השחר","כוכב יאיר-צור יגאל","כוכב יעקב","כוכב מיכאל","כורזים","כחל","כחלה","כיסופים","כישור","כליל","כלנית","כמאנה","כמהין","כמון","כנות","כנף","כנפי שחר","כנרת (מושבה)","כנרת (קבוצה)","כסיפה","כסלון","כסרא-סמיע","כעביה-טבאש-חג\u0027אג\u0027רה","כפר אביב","כפר אדומים","כפר אוריה","כפר אחים","כפר ביאליק","כפר ביל\"ו","כפר בלום","כפר בן נון","כפר ברא","כפר ברוך","כפר גדעון","כפר גלים","כפר גליקסון","כפר גלעדי","כפר דניאל","כפר האורנים","כפר החורש","כפר המכבי","כפר הנגיד","כפר הנוער הדתי","כפר הנשיא","כפר הס","כפר הרא\"ה","כפר הרי\"ף","כפר ויתקין","כפר ורבורג","כפר ורדים","כפר זוהרים","כפר זיתים","כפר חב\"ד","כפר חושן","כפר חיטים","כפר חיים","כפר חנניה","כפר חסידים א\u0027","כפר חסידים ב\u0027","כפר חרוב","כפר טרומן","כפר יאסיף","כפר ידידיה","כפר יהושע","כפר יונה","כפר יחזקאל","כפר יעבץ","כפר כמא","כפר כנא","כפר מונש","כפר מימון","כפר מל\"ל","כפר מנדא","כפר מנחם","כפר מסריק","כפר מצר","כפר מרדכי","כפר נטר","כפר סאלד","כפר סבא","כפר סילבר","כפר סירקין","כפר עבודה","כפר עזה","כפר עציון","כפר פינס","כפר קאסם","כפר קיש","כפר קרע","כפר ראש הנקרה","כפר רוזנואלד (זרעית)","כפר רופין","כפר רות","כפר שמאי","כפר שמואל","כפר שמריהו","כפר תבור","כפר תפוח","כרכום","כרם ביבנה (ישיבה)","כרם בן זמרה","כרם בן שמן","כרם מהר\"ל","כרם רעים","כרם שלום","כרמי יוסף","כרמי עוז","כרמי צור","כרמי קטיף","כרמיאל","כרמיה","כרמים","כרמל","לבון","לביא","לבנים","להב","להבות הבשן","להבות חביבה","להבים","לוד","לוזית","לוחמי הגיטאות","לוטם","לוטן","לח\"י","לימן","לכיש","לפיד","לפידות","לקיה","לשם","מאור","מאיר שפיה","מבוא ביתר","מבוא דותן","מבוא חורון","מבוא חמה","מבוא מודיעים","מבואות ים","מבואות יריחו","מבועים","מבטחים","מבקיעים","מבשרת ציון","מגאר","מג\u0027ד אל-כרום","מגדים","מגדל","מגדל העמק","מגדל עוז","מג\u0027דל שמס","מגדלים","מגידו","מגל","מגן","מגן שאול","מגרון","מגשימים","מדרך עוז","מדרשת בן גוריון","מדרשת רופין","מודיעין עילית","מודיעין-מכבים-רעות","מולדת","מוצא עילית","מוקייבלה","מורן","מורשת","מזור","מזכרת בתיה","מזרע","מזרעה","מחולה","מחנה הילה","מחנה טלי","מחנה יהודית","מחנה יוכבד","מחנה יפה","מחנה יתיר","מחנה מרים","מחנה תל נוף","מחניים","מחסיה","מטולה","מטע","מי עמי","מיטב","מיטל","מייסר","מיצר","מירב","מירון","מישר","מיתר","מכורה","מכחול","מכמורת","מכמנים","מלאה","מלאכי השלום","מלילות","מלכיה","מנוחה","מנוף","מנות","מנחמיה","מנרה","מנשית זבדה","מסד","מסדה","מסילות","מסילת ציון","מסלול","מסעדה","מסעודין אל-עזאזמה","מעברות","מעגלים","מעגן","מעגן מיכאל","מעוז","מעוז חיים","מעון","מעונה","מעיליא","מעין ברוך","מעין צבי","מעלה אדומים","מעלה אפרים","מעלה גלבוע","מעלה גמלא","מעלה החמישה","מעלה לבונה","מעלה מכמש","מעלה עירון","מעלה עמוס","מעלות-תרשיחא","מענית","מעש","מפלסים","מצובה","מצוקי ארץ","מצליח","מצפה","מצפה אבי\"ב","מצפה אילן","מצפה זיף","מצפה יריחו","מצפה נטופה","מצפה רמון","מצפה שלם","מצר","מקווה ישראל","מרגליות","מרום גולן","מרחב עם","מרחביה (מושב)","מרחביה (קיבוץ)","מרכז שפירא","משאבי שדה","משגב דב","משגב עם","משהד","משואה","משואות יצחק","משכיות","משמר איילון","משמר דוד","משמר הירדן","משמר הנגב","משמר העמק","משמר השבעה","משמר השרון","משמר יהודה","משמרות","משמרת","משען","מתן","מתת","מתתיהו","נאות גולן","נאות הכיכר","נאות מרדכי","נאות סמדר","נאעורה","נבטים","נגבה","נגוהות","נהורה","נהלל","נהריה","נוב","נוגה","נוה צוף","נווה","נווה אבות","נווה אור","נווה אטי\"ב","נווה אילן","נווה איתן","נווה גדיד","נווה דניאל","נווה זוהר","נווה זיו","נווה חריף","נווה ים","נווה ימין","נווה ירק","נווה מבטח","נווה מיכאל","נווה שלום","נועם","נוף איילון","נוף הגליל","נופי פרת","נופים","נופית","נופך","נוקדים","נורדיה","נורית","נזר שומרון","נחושה","נחל עוז","נחלה","נחליאל","נחלים","נחם","נחף","נחשולים","נחשון","נחשונים","נטועה","נטור","נטע","נטעים","נטף","ניין","ניל\"י","ניצן","ניצן ב\u0027","ניצנה (קהילת חינוך)","ניצני סיני","ניצני עוז","ניצנים","ניר אליהו","ניר בנים","ניר גלים","ניר דוד (תל עמל)","ניר ח\"ן","ניר יפה","ניר יצחק","ניר ישראל","ניר משה","ניר עוז","ניר עם","ניר עציון","ניר עקיבא","ניר צבי","נירים","נירית","נמרוד","נס הרים","נס עמים","נס ציונה","נעורים","נעלה","נעמ\"ה","נען","נערן","נצאצרה (שבט)","נצר חזני","נצר סרני","נצרת","נריה","נשר","נתיב הגדוד","נתיב הל\"ה","נתיב העשרה","נתיב השיירה","נתיבות","נתניה","סאג\u0027ור","סאסא","סביון","סגולה","סואעד (חמירה)","סואעד (כמאנה) (שבט)","סולם","סוסיה","סופה","סחלב","סח\u0027נין","סייד (שבט)","סלמה","סלעית","סמר","סנסנה","סעד","סעוה","סער","ספיר","סתריה","עבדון","עברון","עגור","ע\u0027ג\u0027ר","עדי","עדי עד","עדנים","עוזה","עוזייר","עולש","עומר","עופר","עופרה","עוצם","עוקבי (בנו עוקבה)","עזוז","עזר","עזריאל","עזריה","עזריקם","עטאוונה (שבט)","עטרת","עיבל","עידן","עיילבון","עיינות","עילוט","עין איילה","עין אל-אסד","עין גב","עין גדי","עין דור","עין הבשור","עין הוד","עין החורש","עין המפרץ","עין הנצי\"ב","עין העמק","עין השופט","עין השלושה","עין ורד","עין זיוון","עין חוד","עין חצבה","עין חרוד (איחוד)","עין חרוד (מאוחד)","עין יהב","עין ייט\"ב","עין יעקב","עין כרם-בי\"ס חקלאי","עין כרמל","עין מאהל","עין נקובא","עין עירון","עין צורים","עין קנייא","עין ראפה","עין שמר","עין שריד","עין תמר","עינת","עיר אובות","עכו","עלומים","עלי","עלי זהב","עלמה","עלמון","עמוקה","עמיחי","עמינדב","עמיעד","עמיעוז","עמיקם","עמיר","עמנואל","עמקה","ענב","עספיא","עפולה","עצמון שגב","עראבה","עראמשה","ערב אל נעים","ערד","ערוגות","ערערה","ערערה-בנגב","עשהאל","עשרת","עתלית","עתניאל","פארן","פדואל","פדויים","פדיה","פוריה - כפר עבודה","פוריה - נווה עובד","פוריה עילית","פוריידיס","פורת","פטיש","פלך","פלמחים","פני חבר","פני קדם","פסגות","פסוטה","פעמי תש\"ז","פצאל","פקיעין (בוקייעה)","פקיעין חדשה","פרדס חנה-כרכור","פרדסיה","פרוד","פרזון","פרי גן","פרשים","פתח תקווה","פתחיה","צאלים","צביה","צבעון","צובה","צוחר","צופיה","צופים","צופית","צופר","צוקי ים","צוקים","צור הדסה","צור יצחק","צור משה","צור נתן","צוריאל","צורית","ציפורי","צלפון","צנדלה","צפריה","צפרירים","צפת","צרופה","צרעה","קבועה (שבט)","קבוצת יבנה","קדומים","קדימה-צורן","קדם ערבה","קדמה","קדמת צבי","קדר","קדרון","קדרים","קודייראת א-צאנע (שבט)","קוואעין (שבט)","קוממיות","קורנית","קטורה","קיסריה","קלחים","קליה","קלנסווה","קלע","קציר","קצר א-סר","קצרין","קרית אונו","קרית ארבע","קרית אתא","קרית ביאליק","קרית גת","קרית טבעון","קרית ים","קרית יערים","קרית יערים (מוסד)","קרית מוצקין","קרית מלאכי","קרית נטפים","קרית ענבים","קרית עקרון","קרית שלמה","קרית שמונה","קרן יער","קרני שומרון","קשת","ראמה","ראס אל-עין","ראס עלי","ראש העין","ראש פינה","ראש צורים","ראשון לציון","רבבה","רבדים","רביבים","רביד","רגבה","רגבים","רהט","רווחה","רוויה","רוח מדבר","רוחמה","רומאנה","רומת הייב","רועי","רותם","רחוב","רחובות","רחלים","ריחאניה","ריחן","ריינה","רימונים","רינתיה","רכסים","רם-און","רמות","רמות השבים","רמות מאיר","רמות מנשה","רמות נפתלי","רמלה","רמת גן","רמת דוד","רמת הכובש","רמת הנשיא טראמפ","רמת השופט","רמת השרון","רמת יוחנן","רמת ישי","רמת מגשימים","רמת צבי","רמת רזיאל","רמת רחל","רנן","רעים","רעננה","רקפת","רשפון","רשפים","רתמים","שא-נור","שאר ישוב","שבות רחל","שבי דרום","שבי ציון","שבי שומרון","שבלי - אום אל-גנם","שגב-שלום","שדה אילן","שדה אליהו","שדה אליעזר","שדה בוקר","שדה דוד","שדה ורבורג","שדה יואב","שדה יעקב","שדה יצחק","שדה משה","שדה נחום","שדה נחמיה","שדה ניצן","שדה עוזיהו","שדה צבי","שדות ים","שדות מיכה","שדי אברהם","שדי חמד","שדי תרומות","שדמה","שדמות דבורה","שדמות מחולה","שדרות","שואבה","שובה","שובל","שוהם","שומרה","שומריה","שוקדה","שורש","שורשים","שושנת העמקים","שזור","שחר","שחרות","שחרית","שיבולים","שיזף","שיטים","שייח\u0027 דנון","שילה","שילת","שירה","שכניה","שלווה","שלווה במדבר","שלוחות","שלומי","שלומית","שמיר","שמעה","שמרת","שמשית","שני","שניר","שעב","שעל","שעלבים","שער אפרים","שער הגולן","שער העמקים","שער מנשה","שער שומרון","שפיים","שפיר","שפר","שפרעם","שקד","שקף","שרונה","שריגים (לי-און)","שריד","שרשרת","שתולה","שתולים","תאשור","תדהר","תובל","תומר","תושיה","תימורים","תירוש","תל אביב - יפו","תל יוסף","תל יצחק","תל מונד","תל עדשים","תל ציון","תל קציר","תל שבע","תל תאומים","תלם","תלמי אליהו","תלמי אלעזר","תלמי ביל\"ו","תלמי יוסף","תלמי יחיאל","תלמי יפה","תלמים","תמרה","תמרת","תנובות","תעוז","תפרח","תקומה","תקוע","תראבין א-צאנע (ישוב)","תראבין א-צאנע (שבט)","תרום"];
+
 // ══ ORDER / CUSTOMER MODAL ══
 function sendOrder() {
   if (orderItemCount() === 0) { showToast('⚠️ נא לבחור לפחות מתנה אחת'); return; }
   openCustomerModal();
 }
+// מבצע הבלאק נובמבר מיועד ללקוחות חדשים: ישר לטופס המלא, בלי "לקוח קיים"
+const DEAL_SOURCE = 'מבצע בלאק נובמבר';
 function openCustomerModal() {
-  document.getElementById('custChoiceView').classList.remove('hide');
-  document.getElementById('custExistingForm').classList.add('hide');
-  document.getElementById('custNewForm').classList.add('hide');
+  fillCityList();
   document.getElementById('customerModal').classList.remove('hide');
 }
 function closeCustomerModal() {
   document.getElementById('customerModal').classList.add('hide');
 }
-function chooseExisting() {
-  document.getElementById('custChoiceView').classList.add('hide');
-  document.getElementById('custExistingForm').classList.remove('hide');
+
+// ══ ישובים: השלמה אוטומטית + תיקון כתיב לשם הרשמי ══
+// נרמול: בלי רווחים/מקפים/גרשיים/סוגריים, ו-יי→י, וו→ו (קריית = קרית, פתח תקוה = פתח תקווה)
+const normCity = s => s.replace(/[\s\-–—'"׳״`().]/g, '').replace(/יי/g, 'י').replace(/וו/g, 'ו');
+const CITY_ALIASES = { 'תל אביב':'תל אביב - יפו', 'תא':'תל אביב - יפו', 'יפו':'תל אביב - יפו', 'מודיעין':'מודיעין-מכבים-רעות',
+  'נצרת עילית':'נוף הגליל' };
+let CITY_INDEX = null;
+function cityIndex() {
+  if (CITY_INDEX) return CITY_INDEX;
+  CITY_INDEX = {};
+  CITIES.forEach(c => { CITY_INDEX[normCity(c)] = c; });
+  Object.entries(CITY_ALIASES).forEach(([a, c]) => { CITY_INDEX[normCity(a)] = c; });
+  return CITY_INDEX;
 }
-function submitExistingCustomer() {
-  const name = document.getElementById('existName').value.trim();
-  const phone = document.getElementById('existPhone').value.trim();
-  if (!name || !phone) {
-    showToast('⚠️ נא למלא שם וטלפון');
-    return;
-  }
-  closeCustomerModal();
-  finalizeOrder(`👤 *לקוח קיים*\n• שם: ${name}\n• טלפון: ${phone}`, {name, phone, status:'לקוח פעיל'});
+function officialCity(v) { return cityIndex()[normCity(v.trim())] || null; }
+function fillCityList() {
+  const dl = document.getElementById('cityList');
+  if (dl.options.length) return;
+  dl.innerHTML = CITIES.map(c => `<option value="${c.replace(/"/g, '&quot;')}">`).join('');
 }
-function chooseNew() {
-  document.getElementById('custChoiceView').classList.add('hide');
-  document.getElementById('custNewForm').classList.remove('hide');
+function fixCityField() {
+  const el = document.getElementById('custCity');
+  const off = officialCity(el.value);
+  if (off) { el.value = off; el.classList.remove('field-err'); }
 }
+let cityWarned = '';
+
+// טלפון ישראלי: 9-10 ספרות שמתחילות ב-0, או +972
+function validPhone(p) {
+  let d = p.replace(/[^\d+]/g, '');
+  if (d.startsWith('+972')) d = '0' + d.slice(4);
+  else if (d.startsWith('972')) d = '0' + d.slice(3);
+  return /^0\d{8,9}$/.test(d);
+}
+
 function submitNewCustomer() {
   const c1name = document.getElementById('custContact1Name').value.trim();
   const c1phone = document.getElementById('custContact1Phone').value.trim();
@@ -1050,15 +1121,34 @@ function submitNewCustomer() {
   const c2name = document.getElementById('custContact2Name').value.trim();
   const c2phone = document.getElementById('custContact2Phone').value.trim();
   const payment = document.getElementById('custPayment').value;
-  if (!c1phone || !city || !street || !house || !payment) {
-    showToast('⚠️ נא למלא לפחות טלפון איש קשר, ישוב, רחוב, מספר בית ואופן תשלום');
+  // סימון בשדות החובה שחסרים, לפי סדר החשיבות
+  const required = [['custContact1Name', c1name], ['custContact1Phone', c1phone], ['custCity', city], ['custStreet', street], ['custHouse', house], ['custPayment', payment]];
+  required.forEach(([id, v]) => document.getElementById(id).classList.toggle('field-err', !v));
+  const missing = required.find(([, v]) => !v);
+  if (missing) {
+    showToast('⚠️ נא למלא את כל שדות החובה (מסומנים באדום)');
+    document.getElementById(missing[0]).focus();
     return;
   }
-  let details = `👤 *לקוח חדש*\n`;
-  details += `• איש קשר: ${c1name || '—'} - ${c1phone}\n`;
+  if (!validPhone(c1phone)) {
+    document.getElementById('custContact1Phone').classList.add('field-err');
+    showToast('⚠️ מספר הטלפון לא נראה תקין, נא לבדוק שוב');
+    return;
+  }
+  // ישוב שלא נמצא ברשימה: מזהירים פעם אחת, ואם הלקוח מתעקש, מקבלים ומסמנים "לא אומת"
+  const cityOfficial = officialCity(city);
+  if (!cityOfficial && cityWarned !== city) {
+    cityWarned = city;
+    document.getElementById('custCity').classList.add('field-err');
+    showToast('⚠️ לא מצאנו את הישוב ברשימה. בחרו מהרשימה, או לחצו שוב על שליחה אם הוא כתוב נכון');
+    return;
+  }
+  const cityFinal = cityOfficial || city + ' (לא אומת)';
+  let details = `📣 *מקור: ${DEAL_SOURCE}*\n👤 *לקוח חדש*\n`;
+  details += `• איש קשר: ${c1name} - ${c1phone}\n`;
   if (invoiceName) details += `• שם לחשבונית: ${invoiceName}\n`;
   if (email) details += `• אימייל: ${email}\n`;
-  details += `• ישוב: ${city}\n`;
+  details += `• ישוב: ${cityFinal}\n`;
   details += `• רחוב: ${street}\n`;
   details += `• בית: ${house}` + (entrance ? ` | כניסה: ${entrance}` : '') + (lobbyCode ? ` | קוד לובי: ${lobbyCode}` : '') + `\n`;
   if (floor || apartment) details += `• קומה: ${floor || '—'} | דירה: ${apartment || '—'}\n`;
@@ -1067,7 +1157,7 @@ function submitNewCustomer() {
   details += `• אופן תשלום: ${payment}\n`;
   closeCustomerModal();
   const addressNote = [street, 'בית ' + house, entrance ? 'כניסה ' + entrance : '', lobbyCode ? 'קוד לובי ' + lobbyCode : '', floor ? 'קומה ' + floor : '', apartment ? 'דירה ' + apartment : '', deliveryNotes].filter(Boolean).join(', ');
-  finalizeOrder(details, {name: c1name || invoiceName, phone: c1phone, business: invoiceName, email, city, addressNote});
+  finalizeOrder(details, {name: c1name, phone: c1phone, business: invoiceName, email, city: cityFinal, addressNote});
 }
 
 function finalizeOrder(customerNote, sheetFields) {
@@ -1082,7 +1172,7 @@ function finalizeOrder(customerNote, sheetFields) {
   }
   if (sheetFields) {
     const addrNote = sheetFields.addressNote ? ' | כתובת: ' + sheetFields.addressNote : '';
-    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות - בלאק נובמבר', agent:getAgentLabel(), note:'הזמנה בלאק נובמבר - ₪' + total + addrNote});
+    logToSheet({...sheetFields, status:'לקוח פעיל', mainProduct:'כפפות - בלאק נובמבר', agent:getAgentLabel(), note:'מקור: ' + DEAL_SOURCE + ' | לקוח חדש | הזמנה ₪' + total + addrNote});
   }
   window.open('https://wa.me/' + getAgentPhone() + '?text=' + encodeURIComponent(msg), '_blank');
   const agentId = AGENT_PARAM || '1';
