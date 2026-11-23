@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>משחקי הפרסים — בלאק נובמבר | אלף רייש</title>
+<meta property="og:title" content="משחקי הפרסים של בלאק נובמבר 🎡" />
+<meta property="og:description" content="משחקים, הצלחות וסיבוב בגלגל המזל עם פרסים" />
+<meta property="og:image" content="https://alefreish-shop.netlify.app/og-image-blacknovember.jpg?v=2" />
+<meta property="og:image:width" content="1000" />
+<meta property="og:image:height" content="1041" />
+<meta property="og:url" content="https://alefreish-shop.netlify.app/games.html" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#F59E0B; --gold2:#FFD700; --pink:#E91E8C; --pink2:#FF4DB8;
+  --green:#10B981; --green2:#059669; --red:#EF4444;
+  --night:#0d0920; --night2:#17112e; --ink:#F5F3FF; --ink2:rgba(245,243,255,0.7);
+  --glass:rgba(255,255,255,0.09); --glass-b:rgba(255,255,255,0.22);
+}
+html{max-width:100%;}
+body{font-family:'Heebo',sans-serif;background-color:var(--night);background-image:radial-gradient(ellipse 120% 50% at 50% 0%,#24184d 0%,transparent 70%);color:var(--ink);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
+button{font-family:inherit;}
+.hide{display:none!important;}
+
+/* ══ hero ══ */
+.hero{background:linear-gradient(160deg,#060a1a 0%,#0a1842 45%,#0d2154 75%,#060a1a 100%);padding:58px 20px 30px;text-align:center;position:relative;overflow:hidden;border-bottom:3px solid;border-image:linear-gradient(90deg,#FFD700,#F59E0B,#F97316,#F59E0B,#FFD700) 1;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 38%,rgba(245,158,11,0.3),transparent 65%);}
+.hero::after{content:'';position:absolute;inset:-20%;background:repeating-conic-gradient(from 0deg at 50% 32%,rgba(255,215,0,0.09) 0deg 4deg,transparent 4deg 16deg);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:520px;margin:0 auto;}
+.bf-logo{font-weight:900;font-size:clamp(34px,11vw,54px);letter-spacing:1px;line-height:0.95;margin-bottom:10px;background:linear-gradient(180deg,#FFF6C8 0%,#FFD700 40%,#F59E0B 75%,#B45309 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 0 rgba(0,0,0,0.45)) drop-shadow(0 0 18px rgba(245,158,11,0.45));}
+.bf-logo span{display:block;font-size:0.6em;letter-spacing:6px;}
+.eyebrow{display:inline-block;background:linear-gradient(135deg,#F59E0B,#F97316);color:#fff;font-size:13px;font-weight:800;padding:6px 18px;border-radius:50px;margin-bottom:12px;}
+.hero h1{font-size:clamp(26px,7.5vw,38px);font-weight:900;color:#fff;line-height:1.15;}
+.hero h1 span{color:var(--gold2);}
+.hero-sub{color:rgba(255,255,255,0.78);font-size:14px;margin-top:10px;line-height:1.6;}
+.brand-logo{position:absolute;top:16px;left:14px;z-index:5;font-size:13px;font-weight:800;color:#fff;text-decoration:none;opacity:.85;white-space:nowrap;}
+.brand-logo span{color:var(--pink2);}
+
+/* ══ HUD: מונה ההצלחות בפינה הימנית העליונה ══ */
+.hud{position:fixed;top:10px;right:10px;z-index:650;display:flex;align-items:center;gap:7px;background:rgba(23,17,46,0.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1.5px solid rgba(255,215,0,0.5);border-radius:50px;padding:7px 13px;font-size:13.5px;font-weight:900;color:#fff;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.45),0 0 14px rgba(255,215,0,0.18);}
+.hud b{color:var(--gold2);font-weight:900;}
+.hud .sep{opacity:.3;}
+.hud.pop{animation:hudPop .7s ease;}
+@keyframes hudPop{0%,100%{transform:scale(1)}35%{transform:scale(1.18);box-shadow:0 0 26px rgba(255,215,0,0.8)}}
+
+.wrap{max-width:560px;margin:16px auto 0;padding:0 16px;}
+.card{background:var(--glass);border:1px solid var(--glass-b);border-radius:16px;padding:14px;}
+
+/* התקדמות לסיבוב */
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;font-weight:800;}
+.prog-top b{color:var(--gold2);font-size:16px;}
+.prog-bar{height:12px;border-radius:50px;background:rgba(255,255,255,0.1);margin:9px 0 4px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,#F59E0B,#FFD700);box-shadow:0 0 12px rgba(255,215,0,0.6);transition:width .6s ease;}
+.prog-note{font-size:11.5px;color:var(--ink2);}
+.btn-gold{display:block;width:100%;margin-top:12px;background:linear-gradient(135deg,#FFD700,#F59E0B);color:#1a0f00;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(245,158,11,0.35);text-decoration:none;text-align:center;}
+.btn-gold:disabled{background:rgba(255,255,255,0.12);color:var(--ink2);box-shadow:none;cursor:default;}
+.btn-ghost{display:block;width:100%;margin-top:8px;background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.25);padding:11px;border-radius:12px;font-size:13.5px;font-weight:800;cursor:pointer;text-decoration:none;text-align:center;}
+.btn-wa{background:linear-gradient(135deg,#25D366,#128C7E);border:none;}
+.spin-ready{animation:spinGlow 1.6s ease-in-out infinite;}
+@keyframes spinGlow{50%{box-shadow:0 0 26px 4px rgba(255,215,0,0.75)}}
+
+/* כרטיסי המשחקים */
+.sec-title{font-size:16.5px;font-weight:900;color:#fff;margin:24px 0 10px;}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.gcard{position:relative;text-align:right;border-radius:16px;padding:14px 12px 12px;cursor:pointer;color:#fff;border:1.5px solid color-mix(in srgb,var(--c) 75%,transparent);background:linear-gradient(165deg,color-mix(in srgb,var(--c) 32%,var(--night2)) 0%,var(--night2) 78%);box-shadow:0 8px 22px rgba(0,0,0,0.35),0 0 18px color-mix(in srgb,var(--c) 18%,transparent);transition:transform .15s;}
+.gcard:active{transform:scale(.97);}
+.gcard.wide{grid-column:1/-1;}
+.gc-emoji{font-size:34px;line-height:1;}
+.gc-name{font-size:15px;font-weight:900;margin-top:8px;}
+.gc-desc{font-size:11.5px;color:var(--ink2);margin-top:3px;line-height:1.45;min-height:33px;}
+.gc-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+.chip{font-size:10.5px;font-weight:900;padding:2px 8px;border-radius:50px;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.18);white-space:nowrap;}
+.chip.gold{background:linear-gradient(135deg,#FFD700,#F59E0B);color:#1a0f00;border:none;}
+.notice{display:flex;gap:10px;align-items:flex-start;}
+.notice p{font-size:12.5px;color:var(--ink2);line-height:1.65;}
+.notice p strong{color:#fff;}
+.notice-ico{font-size:18px;flex-shrink:0;}
+footer{text-align:center;font-size:11.5px;color:rgba(255,255,255,0.4);padding:26px 16px 30px;}
+footer a{color:inherit;text-decoration:none;}
+
+/* ══ מסך משחק ══ */
+.gview{position:fixed;inset:0;z-index:500;background:var(--night);background-image:radial-gradient(ellipse 120% 40% at 50% 0%,#24184d 0%,transparent 70%);overflow-y:auto;padding-bottom:24px;}
+.gv-top{display:flex;justify-content:flex-end;gap:8px;padding:10px 12px;min-height:56px;align-items:center;}
+.gv-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);color:#fff;font-size:13px;font-weight:800;padding:7px 12px;border-radius:50px;cursor:pointer;}
+.gv-head{max-width:560px;margin:2px auto 8px;padding:0 14px;}
+.gv-title{font-size:20px;font-weight:900;color:#fff;}
+.gv-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+.gv-stage{position:relative;max-width:540px;margin:0 auto;margin-inline:12px;height:clamp(340px,calc(100vh - 215px),600px);border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,0.14);background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(124,58,237,0.16),transparent 70%),linear-gradient(180deg,#17112e,#0d0920);user-select:none;-webkit-user-select:none;touch-action:manipulation;}
+@media (min-width:566px){.gv-stage{margin-inline:auto;}}
+.gv-stage.auto{height:auto;min-height:330px;}
+.gv-rule{max-width:540px;margin:10px auto 0;padding:0 16px;font-size:12px;color:var(--ink2);line-height:1.6;text-align:center;}
+.gst{position:absolute;top:0;left:0;right:0;z-index:3;padding:9px 12px;font-size:12.5px;font-weight:900;color:#fff;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;text-shadow:0 1px 3px rgba(0,0,0,0.6);pointer-events:none;}
+.gst b{color:var(--gold2);}
+.gst.rel{position:relative;}
+canvas.gcv{position:absolute;inset:0;display:block;touch-action:none;}
+
+/* overlay בתוך הבמה */
+.ov{position:absolute;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;background:rgba(13,9,32,0.82);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);animation:ovIn .25s ease;}
+@keyframes ovIn{from{opacity:0}}
+.ov-emoji{font-size:46px;line-height:1;}
+.ov-title{font-size:20px;font-weight:900;color:#fff;}
+.ov-text{font-size:13.5px;color:var(--ink2);line-height:1.6;max-width:310px;}
+.ov-sub{font-size:13px;font-weight:800;color:var(--gold2);}
+.ov .btn-gold,.ov .btn-ghost{width:auto;min-width:190px;padding:12px 24px;margin-top:4px;}
+
+/* ══ כובעי הקסם ══ */
+.h-table{position:absolute;left:0;right:0;bottom:0;height:32%;background:linear-gradient(180deg,#A0703F 0%,#6B4423 45%,#45290f 100%);border-top:3px solid #C99563;box-shadow:0 -8px 20px rgba(0,0,0,0.4);}
+.h-table::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.08) 0 2px,transparent 2px 47px);}
+.h-cloth{position:absolute;left:6%;right:6%;bottom:calc(32% - 18px);height:28px;border-radius:50%;background:radial-gradient(ellipse,rgba(225,29,72,0.55),rgba(159,18,57,0.25) 60%,transparent 72%);}
+.hatc{position:absolute;bottom:calc(32% - 14px);left:0;width:106px;height:170px;margin-left:-53px;z-index:2;cursor:pointer;will-change:transform;}
+.hglove{position:absolute;bottom:2px;left:0;right:0;text-align:center;font-size:50px;line-height:1;opacity:0;filter:drop-shadow(0 3px 4px rgba(0,0,0,0.5));}
+.hatc.has .hglove{opacity:1;}
+.hsvg{position:absolute;bottom:0;left:0;width:106px;height:106px;transition:transform .32s cubic-bezier(.3,1.3,.5,1);filter:drop-shadow(0 8px 8px rgba(0,0,0,0.5));}
+.hsvg svg{width:100%;height:100%;display:block;}
+.hatc.lift .hsvg{transform:translateY(-74px) rotate(-10deg);}
+.hatc.pickable .hsvg{animation:hatWiggle 1.6s ease-in-out infinite;}
+.hatc.pickable:nth-child(4) .hsvg{animation-delay:.25s;} .hatc.pickable:nth-child(5) .hsvg{animation-delay:.5s;}
+@keyframes hatWiggle{0%,100%{transform:none}50%{transform:translateY(-5px)}}
+.hatc.right .hsvg{filter:drop-shadow(0 0 16px rgba(255,215,0,0.9));}
+.hatc.wrong .hsvg{filter:drop-shadow(0 0 14px rgba(239,68,68,0.9));}
+
+/* ══ זיכרון ══ */
+.mgrid{display:grid;gap:7px;padding:44px 10px 12px;}
+.mcard{aspect-ratio:1;border:none;background:none;padding:0;cursor:pointer;perspective:600px;}
+.mc-in{position:relative;display:block;width:100%;height:100%;transition:transform .38s ease;transform-style:preserve-3d;}
+.mcard.up .mc-in,.mcard.done .mc-in{transform:rotateY(180deg);}
+.mc-back,.mc-front{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.mc-back{background:repeating-linear-gradient(45deg,rgba(255,215,0,0.12) 0 6px,transparent 6px 12px),linear-gradient(160deg,#2a1d5c,#17112e);border:1.5px solid rgba(255,215,0,0.45);}
+.mc-back::after{content:'AR';font-size:12px;font-weight:900;letter-spacing:1px;color:rgba(255,215,0,0.75);}
+.mc-front{transform:rotateY(180deg);background:linear-gradient(160deg,#fff,#EDE9FE);border:1.5px solid #fff;font-size:min(8vw,30px);}
+.mcard.done .mc-front{background:linear-gradient(160deg,#D1FAE5,#A7F3D0);border-color:#6EE7B7;box-shadow:0 0 12px rgba(16,185,129,0.6);}
+
+/* ══ רצף הצבעים ══ */
+.spads{position:absolute;inset:46px 16px 16px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
+.spad{border-radius:22px;border:2px solid rgba(255,255,255,0.18);background:var(--pc);opacity:.42;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:900;color:#fff;transition:opacity .08s,transform .08s,box-shadow .08s;text-shadow:0 1px 3px rgba(0,0,0,0.5);}
+.spad span{font-size:36px;line-height:1;}
+.spad.white{color:#1f2937;text-shadow:none;}
+.spad.lit{opacity:1;transform:scale(1.04);box-shadow:0 0 34px 6px color-mix(in srgb,var(--pc) 70%,#fff);}
+.spad.black.lit{box-shadow:0 0 34px 6px rgba(255,255,255,0.55);}
+
+/* ══ חלון זכוכית (פרסים / גלגל) ══ */
+.modal{position:fixed;inset:0;z-index:700;background:rgba(5,3,15,0.55);display:flex;align-items:flex-start;justify-content:center;padding:62px 14px 24px;overflow-y:auto;animation:ovIn .2s ease;}
+.gpanel{position:relative;width:100%;max-width:420px;background:rgba(255,255,255,0.1);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,0.26);border-radius:20px;padding:18px 16px;box-shadow:0 20px 60px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.15);}
+.px{position:absolute;top:10px;left:10px;width:32px;height:32px;border-radius:50%;border:none;background:rgba(255,255,255,0.12);color:#fff;font-size:15px;cursor:pointer;}
+.gpanel h3{font-size:17px;font-weight:900;color:#fff;margin-bottom:10px;padding-left:34px;}
+.gpanel h4{font-size:13.5px;font-weight:900;color:var(--gold2);margin:16px 0 8px;}
+.p-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13px;font-weight:700;}
+.p-row:last-child{border-bottom:none;}
+.p-row .chip{flex-shrink:0;}
+.p-empty{font-size:12.5px;color:var(--ink2);padding:4px 0;}
+.p-prize{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13px;font-weight:700;}
+.p-prize label{display:flex;align-items:center;gap:8px;flex:1;cursor:pointer;}
+.p-prize input{width:18px;height:18px;accent-color:#F59E0B;}
+.chip.ok{background:rgba(16,185,129,0.2);border-color:rgba(110,231,183,0.5);color:#A7F3D0;}
+.chip.used{background:rgba(255,255,255,0.08);color:var(--ink2);}
+.cpn-box{margin-top:12px;border:2px dashed var(--gold2);border-radius:14px;padding:12px;text-align:center;background:rgba(255,215,0,0.07);}
+.cpn-code{font-size:24px;font-weight:900;letter-spacing:2px;color:#fff;direction:ltr;user-select:all;-webkit-user-select:all;}
+.cpn-prizes{font-size:12.5px;color:var(--ink2);margin-top:4px;}
+.rules{font-size:11.5px;color:var(--ink2);line-height:1.7;margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.12);}
+
+/* גלגל המזל */
+.wheel-wrap{position:relative;width:min(300px,78vw);aspect-ratio:1;margin:8px auto 4px;}
+.wheel-wrap canvas{width:100%;height:100%;display:block;border-radius:50%;box-shadow:0 0 0 6px #F59E0B,0 0 0 9px #7c2d12,0 0 30px rgba(255,215,0,0.45);transition:transform 5.2s cubic-bezier(.12,.72,.14,1);}
+.wheel-ptr{position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:2;font-size:30px;color:#fff;filter:drop-shadow(0 3px 3px rgba(0,0,0,0.6));line-height:1;}
+.wheel-hub{position:absolute;top:50%;left:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF6C8,#F59E0B 60%,#B45309);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#1a0f00;box-shadow:0 4px 12px rgba(0,0,0,0.5);}
+.wheel-info{text-align:center;font-size:14px;font-weight:800;min-height:22px;margin-top:12px;}
+.wheel-win{font-size:18px;color:var(--gold2);}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:900;background:#fff;color:#111;font-size:13.5px;font-weight:800;padding:11px 18px;border-radius:50px;box-shadow:0 8px 24px rgba(0,0,0,0.4);max-width:90vw;text-align:center;animation:ovIn .25s ease;}
+.confetti{position:fixed;top:-30px;z-index:950;pointer-events:none;font-size:20px;animation:fall linear forwards;}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(var(--rot));}}
+
+.closed{position:fixed;inset:0;z-index:1000;background:var(--night);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;}
+.closed h2{font-size:22px;font-weight:900;color:#fff;margin:10px 0 8px;}
+.closed p{font-size:14px;color:var(--ink2);margin-bottom:20px;}
+@media (prefers-reduced-motion: reduce){.spin-ready,.hatc.pickable .hsvg{animation:none;}}
+</style>
+</head>
+<body>
+
+<div class="closed hide" id="closedScreen">
+  <div>
+    <div style="font-size:48px;">🎮</div>
+    <h2>משחקי הפרסים אינם זמינים כרגע</h2>
+    <p>מוזמנים להציץ בקטלוג המלא שלנו</p>
+    <a class="btn-gold" id="closedLink" href="index.html" style="display:inline-block;width:auto;padding:13px 26px;">לקטלוג</a>
+  </div>
+</div>
+
+<div class="hud" id="hud" onclick="openPanel()" role="button" aria-label="ההצלחות והפרסים שלי">
+  <span>⭐ <b id="hudWins">0</b></span><span class="sep">|</span>
+  <span>🎡 <b id="hudSpins">0</b></span><span class="sep">|</span>
+  <span>🎁 <b id="hudPrizes">0</b></span>
+</div>
+
+<div class="hero">
+  <a class="brand-logo to-catalog" href="index.html">אלף <span>רייש</span></a>
+  <div class="hero-inner">
+    <div class="bf-logo">BLACK<span>NOVEMBER</span></div>
+    <div class="eyebrow">🎮 משחקי הפרסים</div>
+    <h1>משחקים, הצלחות <span>ופרסים</span></h1>
+    <div class="hero-sub">כל 10 הצלחות = סיבוב בגלגל המזל 🎡<br>המשחקים מתחילים קל ונעשים קשים יותר עם כל הצלחה</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <div class="prog-top"><span>⭐ <b id="progWins">0</b> הצלחות</span><span id="progLeft"></span></div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-note">ההצלחות נאספות מכל המשחקים יחד</div>
+    <button class="btn-gold" id="homeSpinBtn" onclick="openWheel()">🎡 לגלגל המזל</button>
+  </div>
+
+  <div class="sec-title">🎮 בחרו משחק</div>
+  <div class="games" id="gamesGrid"></div>
+
+  <div class="card notice" style="margin-top:18px;">
+    <span class="notice-ico">🎁</span>
+    <p><strong>איך מקבלים את הפרסים?</strong><br>
+    לוחצים על המונה למעלה ומפיקים קופון. את הקופון מקלידים בטופס ההזמנה, והפרסים מצטרפים למשלוח.<br>
+    <strong>עד 2 פרסים לכל הזמנה.</strong> אפשר להמשיך לשחק ולצבור גם אחרי זה.</p>
+  </div>
+
+  <a class="btn-gold" id="dealLink" href="black-november.html" style="margin-top:16px;">🛒 למבצעי בלאק נובמבר</a>
+</div>
+
+<footer>© 2026 <a class="to-catalog" href="index.html">אלף רייש שיווק פרסום ויחצ</a> | כל הזכויות שמורות</footer>
+
+<!-- מסך משחק -->
+<div class="gview hide" id="gview">
+  <div class="gv-top">
+    <button class="gv-btn" id="soundBtn" onclick="toggleSound()" aria-label="צליל">🔊</button>
+    <button class="gv-btn" onclick="closeGame()">✕ יציאה</button>
+  </div>
+  <div class="gv-head">
+    <div class="gv-title" id="gvTitle"></div>
+    <div class="gv-meta" id="gvMeta"></div>
+  </div>
+  <div class="gv-stage" id="gvStage"></div>
+  <div class="gv-rule" id="gvRule"></div>
+</div>
+
+<!-- חלון ההצלחות והפרסים -->
+<div class="modal hide" id="panelModal" onclick="if(event.target===this)closePanel()">
+  <div class="gpanel" id="panelBody"></div>
+</div>
+
+<!-- גלגל המזל -->
+<div class="modal hide" id="wheelModal" onclick="if(event.target===this)closeWheel()">
+  <div class="gpanel">
+    <button class="px" onclick="closeWheel()" aria-label="סגירה">✕</button>
+    <h3>🎡 גלגל המזל</h3>
+    <div class="wheel-wrap"><div class="wheel-ptr">▼</div><canvas id="wheelCv" width="600" height="600"></canvas><div class="wheel-hub">AR</div></div>
+    <div class="wheel-info" id="wheelInfo"></div>
+    <button class="btn-gold" id="spinBtn" onclick="spinWheel()">סובבו!</button>
+    <button class="btn-ghost hide" id="wheelPrizesBtn" onclick="closeWheel();openPanel()">🎁 לפרסים שלי ולקופון</button>
+  </div>
+</div>
+
+<script src="prizes.js"></script>
+<script>
+// ══ מתג: false = הדף מציג "משחקי הפרסים אינם זמינים כרגע" ══
+const GAMES_ACTIVE = true;
+
+const SPIN_EVERY = 10;          // כל כמה הצלחות מקבלים סיבוב
+const MAX_PRIZES_PER_ORDER = 2;
+const STORE_KEY = 'bn_games_v1';
+
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+// ══ סוכנים: כל סוכן עם קישור משלו (?agent=2) ══
+const AGENTS = {'1':'972527576337','2':'972548999037','3':'972737854665'};
+const AGENT_PARAM = new URLSearchParams(location.search).get('agent');
+const AGENT_ID = AGENTS[AGENT_PARAM] ? AGENT_PARAM : '1';
+const AGENT_Q = AGENTS[AGENT_PARAM] ? '?agent=' + AGENT_PARAM : '';
+document.querySelectorAll('.to-catalog').forEach(a => a.href = 'index.html' + AGENT_Q);
+document.getElementById('closedLink').href = 'index.html' + AGENT_Q;
+document.getElementById('dealLink').href = 'black-november.html' + AGENT_Q;
+
+const GAME_LIST = [
+  {id:'hats',   name:'כובעי הקסם',     emoji:'🎩', c:'#E11D48', desc:'הכפפה מתחבאת מתחת לכובע. עקבו אחריה!',
+   rule:'⭐ הצלחה = מציאת הכפפה בשני סבבים ברצף. כל הצלחה מוסיפה ערבובים ומהירות, וגם בתוך כל סבב הקצב עולה כל כמה שניות.'},
+  {id:'steady', name:'יד של מנתח',     emoji:'🩺', c:'#0EA5E9', desc:'הובילו את האצבע במסלול בלי לגעת בדפנות',
+   rule:'⭐ הצלחה = הגעה לדגל בלי לגעת בדפנות, בלי להרים את האצבע ובזמן. כל הצלחה מצרה את המסלול ומקצרת את הזמן.'},
+  {id:'catch',  name:'תפיסה סטרילית',  emoji:'🧤', c:'#10B981', desc:'תפסו כפפות נקיות, התרחקו מחיידקים',
+   rule:'⭐ הצלחה = תפיסת כל הכפפות הנדרשות לפני שנגמרים 3 הלבבות. חיידק שנתפס או כפפה שנפלה = לב אחד פחות.'},
+  {id:'memory', name:'זיכרון קליני',   emoji:'🧠', c:'#8B5CF6', desc:'מצאו את כל הזוגות במעט מהלכים',
+   rule:'⭐ הצלחה = כל הזוגות נמצאו לפני שנגמרו המהלכים והזמן. עם ההצלחות יש יותר קלפים ופחות מהלכים.'},
+  {id:'simon',  name:'רצף הכפפות',     emoji:'🎨', c:'#EC4899', desc:'זכרו את רצף הצבעים וחזרו עליו',
+   rule:'⭐ הצלחה = חזרה נכונה על כל הרצף עד האורך הנדרש. עם ההצלחות הרצף מתארך ומתנגן מהר יותר.'}
+];
+const GAME_BY_ID = Object.fromEntries(GAME_LIST.map(g => [g.id, g]));
+
+// ══ שמירה: הכל נשמר במכשיר מיד עם כל שינוי ונשאר גם אחרי סגירת הדף ══
+function blankState() {
+  const g = {};
+  GAME_LIST.forEach(x => g[x.id] = {wins:0, stage:0});
+  return {v:1, g, spinsUsed:0, bonus:0, prizes:[], coupons:[], sound:true, t:Date.now()};
+}
+function loadState() {
+  const b = blankState();
+  let s = null;
+  try { s = JSON.parse(lsGet(STORE_KEY) || 'null'); } catch (e) {}
+  if (!s || s.v !== 1) return b;
+  s.g = s.g || {};
+  GAME_LIST.forEach(x => { s.g[x.id] = Object.assign({wins:0, stage:0}, s.g[x.id]); });
+  return Object.assign(b, s);
+}
+let S = loadState();
+function save() { S.t = Date.now(); lsSet(STORE_KEY, JSON.stringify(S)); }
+
+const lvl = id => S.g[id].wins;
+function totalWins() { return GAME_LIST.reduce((n, x) => n + S.g[x.id].wins, 0); }
+function spinsAvail() { return Math.max(0, Math.floor(totalWins() / SPIN_EVERY) + S.bonus - S.spinsUsed); }
+function freePrizes() { return S.prizes.filter(p => !p.coupon); }
+
+// ══ עזרים ══
+const wait = ms => new Promise(r => setTimeout(r, ms));
+const rnd = n => Math.floor(Math.random() * n);
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = rnd(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+let toastT = 0;
+function showToast(msg, ms) {
+  let t = document.getElementById('toast');
+  if (!t) { t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.remove('hide');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.add('hide'), ms || 2600);
+}
+function confetti() {
+  const em = ['⭐','✨','🎉','🧤','💛'];
+  for (let i = 0; i < 26; i++) {
+    const s = document.createElement('span');
+    s.className = 'confetti';
+    s.textContent = em[rnd(em.length)];
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.setProperty('--dx', (Math.random() * 120 - 60) + 'px');
+    s.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+    s.style.animationDuration = (1.6 + Math.random() * 1.4) + 's';
+    s.style.animationDelay = Math.random() * 0.4 + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 3600);
+  }
+}
+
+// צלילים קצרים (בלי קבצים)
+let AC = null;
+function tone(freq, ms, type) {
+  if (!S.sound) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    const o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime;
+    o.type = type || 'triangle'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.16, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + ms / 1000);
+    o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + ms / 1000 + 0.05);
+  } catch (e) {}
+}
+function chime() { [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => tone(f, 160), i * 90)); }
+function buzz() { tone(150, 260, 'sawtooth'); try { navigator.vibrate && navigator.vibrate(80); } catch (e) {} }
+function toggleSound() { S.sound = !S.sound; save(); updateSoundBtn(); }
+function updateSoundBtn() { document.getElementById('soundBtn').textContent = S.sound ? '🔊' : '🔇'; }
+
+// ══ מונה עליון + דף הבית ══
+let lastHud = '';
+function updateHud(pop) {
+  const w = totalWins(), sp = spinsAvail(), pr = freePrizes().length;
+  document.getElementById('hudWins').textContent = w;
+  document.getElementById('hudSpins').textContent = sp;
+  document.getElementById('hudPrizes').textContent = pr;
+  const key = w + '|' + sp + '|' + pr;
+  if (pop && key !== lastHud) {
+    const h = document.getElementById('hud');
+    h.classList.remove('pop'); void h.offsetWidth; h.classList.add('pop');
+  }
+  lastHud = key;
+  renderHome();
+}
+function renderHome() {
+  const w = totalWins(), sp = spinsAvail();
+  const inCycle = w % SPIN_EVERY;
+  document.getElementById('progWins').textContent = w;
+  document.getElementById('progLeft').textContent = 'עוד ' + (SPIN_EVERY - inCycle) + ' לסיבוב 🎡';
+  document.getElementById('progFill').style.width = (inCycle / SPIN_EVERY * 100) + '%';
+  const b = document.getElementById('homeSpinBtn');
+  b.disabled = sp === 0;
+  b.classList.toggle('spin-ready', sp > 0);
+  b.textContent = sp > 0 ? `🎡 יש לכם ${sp === 1 ? 'סיבוב אחד' : sp + ' סיבובים'}! לסובב` : '🎡 גלגל המזל נפתח כל 10 הצלחות';
+  document.getElementById('gamesGrid').innerHTML = GAME_LIST.map((g, i) => `
+    <div class="gcard${i === 0 ? ' wide' : ''}" style="--c:${g.c}" onclick="openGame('${g.id}')">
+      <div class="gc-emoji">${g.emoji}</div>
+      <div class="gc-name">${g.name}</div>
+      <div class="gc-desc">${g.desc}</div>
+      <div class="gc-meta"><span class="chip gold">⭐ ${S.g[g.id].wins}</span><span class="chip">רמה ${S.g[g.id].wins + 1}</span></div>
+    </div>`).join('');
+}
+
+// ══ מסך משחק ══
+let curGame = null;
+const stageEl = () => document.getElementById('gvStage');
+function openGame(id) {
+  const g = GAME_BY_ID[id];
+  closeGame(true);
+  curGame = GAMES[id];
+  document.getElementById('gvTitle').textContent = g.emoji + ' ' + g.name;
+  document.getElementById('gvRule').textContent = g.rule;
+  refreshMeta(id);
+  const st = stageEl();
+  st.className = 'gv-stage';
+  st.innerHTML = '';
+  document.getElementById('gview').classList.remove('hide');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('gview').scrollTop = 0;
+  curGame.id = id;
+  curGame.mount(st);
+}
+function closeGame(silent) {
+  if (curGame) { try { curGame.stop(); } catch (e) {} curGame = null; }
+  stageEl().innerHTML = '';
+  document.getElementById('gview').classList.add('hide');
+  document.body.style.overflow = '';
+}
+function refreshMeta(id) {
+  const w = S.g[id].wins;
+  document.getElementById('gvMeta').innerHTML = `<span class="chip">רמה ${w + 1}</span><span class="chip gold">⭐ ${w} הצלחות במשחק</span>`;
+}
+
+// חלון בתוך הבמה: פתיחה, הצלחה, כישלון
+function ov(st, o) {
+  st.querySelectorAll('.ov').forEach(x => x.remove());
+  const d = document.createElement('div');
+  d.className = 'ov';
+  d.innerHTML = `<div class="ov-emoji">${o.emoji || ''}</div><div class="ov-title">${o.title || ''}</div>` +
+    (o.text ? `<div class="ov-text">${o.text}</div>` : '') + (o.sub ? `<div class="ov-sub">${o.sub}</div>` : '');
+  (o.btns || []).forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = b.ghost ? 'btn-ghost' : 'btn-gold';
+    btn.textContent = b.label;
+    btn.onclick = e => { e.stopPropagation(); d.remove(); b.fn(); };
+    d.appendChild(btn);
+  });
+  st.appendChild(d);
+  return d;
+}
+function gameWin(id) {
+  S.g[id].wins++;
+  save();
+  refreshMeta(id);
+  updateHud(true);
+  confetti(); chime();
+  if (totalWins() % SPIN_EVERY === 0) showToast('🎡 הרווחתם סיבוב בגלגל המזל!', 3500);
+}
+function endOv(st, ok, title, text, againLabel, againFn) {
+  const sp = spinsAvail();
+  const left = SPIN_EVERY - totalWins() % SPIN_EVERY;
+  const btns = [{label: againLabel, fn: againFn}];
+  if (ok && sp > 0) btns.push({label:'🎡 לסובב את הגלגל', ghost:true, fn: () => { closeGame(); openWheel(); }});
+  ov(st, {emoji: ok ? '⭐' : '😅', title, text,
+    sub: ok ? (sp > 0 ? `🎡 מחכים לכם ${sp === 1 ? 'סיבוב אחד' : sp + ' סיבובים'} בגלגל!` : `עוד ${left} הצלחות לסיבוב בגלגל 🎡`) : '',
+    btns});
+  if (!ok) buzz();
+}
+
+// ════════════════════════════════════════════
+// 🎩 כובעי הקסם — מצאו את הכפפה
+// ════════════════════════════════════════════
+const HAT_SVG = '<svg viewBox="0 0 100 100"><defs><linearGradient id="hg" x1="0" x2="1"><stop offset="0" stop-color="#14111d"/><stop offset=".42" stop-color="#4b4466"/><stop offset="1" stop-color="#110e19"/></linearGradient></defs>' +
+  '<rect x="21" y="12" width="58" height="70" rx="5" fill="url(#hg)"/><ellipse cx="50" cy="13" rx="29" ry="6" fill="#2f2945"/>' +
+  '<rect x="21" y="60" width="58" height="12" fill="#E11D48"/><rect x="21" y="60" width="58" height="3" fill="#FB7185" opacity=".6"/>' +
+  '<ellipse cx="50" cy="86" rx="48" ry="11" fill="#0c0a14"/><ellipse cx="50" cy="83" rx="44" ry="7.5" fill="#2b2541"/>' +
+  '<text x="50" y="44" text-anchor="middle" font-size="18" fill="#FFD700" opacity=".85">★</text></svg>';
+
+const Hats = (() => {
+  let st, hats, pos, slotX, glove, alive, picking;
+  function stageTxt(extra) {
+    const s = S.g.hats.stage;
+    st.querySelector('.gst').innerHTML = `<span>סבב <b>${s + 1}</b> מתוך 2</span>` + (extra ? `<span>${extra}</span>` : '');
+  }
+  function place(i) { hats[i].style.transform = `translateX(${slotX[pos[i]]}px)`; }
+  function mount(s) {
+    st = s; alive = true; picking = false;
+    st.innerHTML = '<div class="gst"></div><div class="h-cloth"></div><div class="h-table"></div>';
+    const w = st.clientWidth || 360;
+    slotX = [w * 0.2, w * 0.5, w * 0.8];
+    pos = [0, 1, 2];
+    hats = [0, 1, 2].map(i => {
+      const el = document.createElement('div');
+      el.className = 'hatc';
+      el.innerHTML = '<div class="hglove">🧤</div><div class="hsvg">' + HAT_SVG + '</div>';
+      el.addEventListener('pointerdown', () => choose(i));
+      st.appendChild(el);
+      return el;
+    });
+    hats.forEach((_, i) => place(i));
+    stageTxt();
+    ov(st, {emoji:'🎩', title:'כובעי הקסם',
+      text: S.g.hats.stage ? 'עברתם את סבב 1! עכשיו סבב 2, מהר יותר.' : 'הכפפה מתחבאת מתחת לאחד הכובעים.<br>הכובעים מתערבבים, ואתם מוצאים אותה.',
+      btns:[{label: S.g.hats.stage ? 'לסבב 2 ▶' : 'התחלה ▶', fn: round}]});
+  }
+  function swapAnim(a, b, d) {
+    const xa = slotX[pos[a]], xb = slotX[pos[b]], mid = (xa + xb) / 2;
+    const far = Math.abs(pos[a] - pos[b]) === 2 ? 1.35 : 1;
+    hats[a].style.zIndex = 3; hats[b].style.zIndex = 2;
+    [pos[a], pos[b]] = [pos[b], pos[a]];
+    place(a); place(b);
+    const opt = {duration: d, easing: 'ease-in-out'};
+    const p1 = hats[a].animate([{transform:`translateX(${xa}px)`},{transform:`translateX(${mid}px) translateY(${-22 * far}px) scale(1.06)`},{transform:`translateX(${xb}px)`}], opt).finished;
+    const p2 = hats[b].animate([{transform:`translateX(${xb}px)`},{transform:`translateX(${mid}px) translateY(${12 * far}px) scale(.94)`},{transform:`translateX(${xa}px)`}], opt).finished;
+    return Promise.all([p1, p2]).catch(() => {});
+  }
+  async function round() {
+    if (!alive) return;
+    const L = lvl('hats'), stage = S.g.hats.stage;
+    const swaps = Math.min(20 + 2 * L, 44) + (stage ? 6 : 0);
+    let d = Math.max(380 - 18 * L, 220) * (stage ? 0.85 : 1);
+    const dMin = Math.max(170 - 6 * L, 105);
+    hats.forEach(h => h.classList.remove('lift', 'right', 'wrong', 'pickable', 'has'));
+    glove = rnd(3);
+    hats[glove].classList.add('has');
+    stageTxt('👀 הכפפה כאן...');
+    await wait(350);
+    hats[glove].classList.add('lift');
+    await wait(1100);
+    hats[glove].classList.remove('lift');
+    await wait(450);
+    let lastUp = performance.now();
+    for (let k = 0; k < swaps; k++) {
+      if (!alive) return;
+      const now = performance.now();
+      if (now - lastUp > 2500) { d = Math.max(dMin, d * 0.86); lastUp = now; }  // כל כמה שניות הקצב עולה
+      const a = rnd(3); let b = rnd(2); if (b >= a) b++;
+      stageTxt(`🔀 ${k + 1}/${swaps}`);
+      await swapAnim(a, b, d);
+    }
+    if (!alive) return;
+    hats.forEach(h => { h.style.zIndex = ''; h.classList.add('pickable'); });
+    stageTxt('👆 איפה הכפפה?');
+    picking = true;
+  }
+  async function choose(i) {
+    if (!picking || !alive) return;
+    picking = false;
+    hats.forEach(h => h.classList.remove('pickable'));
+    hats[i].classList.add('lift');
+    if (i === glove) {
+      hats[i].classList.add('right'); tone(784, 140);
+      await wait(800);
+      if (!alive) return;
+      if (S.g.hats.stage === 0) {
+        S.g.hats.stage = 1; save(); stageTxt();
+        ov(st, {emoji:'✅', title:'מצאתם!', text:'עכשיו סבב 2 מתוך 2: יותר ערבובים ומהר יותר.', btns:[{label:'לסבב 2 ▶', fn: round}]});
+      } else {
+        S.g.hats.stage = 0; gameWin('hats'); stageTxt();
+        endOv(st, true, 'הצלחה!', 'מצאתם את הכפפה פעמיים ברצף 🎩🧤', 'סיבוב נוסף ▶', round);
+      }
+    } else {
+      hats[i].classList.add('wrong');
+      await wait(450);
+      hats[glove].classList.add('lift', 'right');
+      await wait(900);
+      if (!alive) return;
+      S.g.hats.stage = 0; save(); stageTxt();
+      endOv(st, false, 'כמעט!', 'הכפפה הייתה מתחת לכובע אחר. מתחילים שוב מסבב 1.', 'נסו שוב ▶', round);
+    }
+  }
+  return {mount, stop: () => { alive = false; picking = false; }};
+})();
+
+// ════════════════════════════════════════════
+// 🩺 יד של מנתח — מסלול בלי לגעת בדפנות
+// ════════════════════════════════════════════
+const Steady = (() => {
+  let st, cv, ctx, W, H, alive, pts, tw, tl, state, t0, raf, prog, finger, failAt;
+  function size() {
+    const r = st.getBoundingClientRect(); W = r.width; H = r.height;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function build() {
+    const L = lvl('steady');
+    tw = Math.max(36 - 2.5 * L, 18);
+    tl = Math.max(16 - 0.6 * L, 9);
+    const A = Math.min(W * 0.16 + L * 5, W * 0.3), f = Math.min(1.1 + L * 0.13, 2.0);
+    const A2 = Math.min(10 + L * 2.5, 24), f2 = Math.min(3 + L * 0.3, 5);
+    const p1 = Math.random() * 6.28, p2 = Math.random() * 6.28;
+    const y0 = 62, y1 = H - 40, N = 170;
+    pts = [];
+    for (let i = 0; i < N; i++) {
+      const u = i / (N - 1), y = y0 + (y1 - y0) * u;
+      let x = W / 2 + A * Math.sin(6.283 * f * u + p1) + A2 * Math.sin(6.283 * f2 * u + p2);
+      x = Math.max(tw + 6, Math.min(W - tw - 6, x));
+      pts.push([x, y]);
+    }
+    state = 'ready'; prog = 0; finger = null; failAt = null;
+  }
+  function segDist(p, a, b) {
+    const dx = b[0] - a[0], dy = b[1] - a[1], l2 = dx * dx + dy * dy || 1;
+    let t = ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / l2; t = Math.max(0, Math.min(1, t));
+    const x = a[0] + t * dx - p[0], y = a[1] + t * dy - p[1];
+    return Math.sqrt(x * x + y * y);
+  }
+  // בודקים רק קטעים קרובים להתקדמות: אין קיצורי דרך בין פיתולים
+  function check(p) {
+    let best = 1e9, bi = prog;
+    const from = Math.max(0, prog - 20), to = Math.min(pts.length - 2, prog + 10);
+    for (let i = from; i <= to; i++) { const d = segDist(p, pts[i], pts[i + 1]); if (d < best) { best = d; bi = i; } }
+    if (best > tw / 2 - 3) return false;
+    prog = Math.max(prog, bi);
+    return true;
+  }
+  function loc(e) { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+  function down(e) {
+    if (state !== 'ready') return;
+    const p = loc(e);
+    if (Math.hypot(p[0] - pts[0][0], p[1] - pts[0][1]) > Math.max(tw, 24)) { showToast('👆 מתחילים מהעיגול הירוק'); return; }
+    try { cv.setPointerCapture(e.pointerId); } catch (er) {}
+    state = 'run'; t0 = performance.now(); finger = p; prog = 0;
+    raf = requestAnimationFrame(tick);
+  }
+  function move(e) {
+    if (state !== 'run') return;
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+    const list = evs.length ? evs : [e];
+    for (const ev of list) {
+      const p = loc(ev);
+      const steps = Math.max(1, Math.ceil(Math.hypot(p[0] - finger[0], p[1] - finger[1]) / 4));
+      for (let k = 1; k <= steps; k++) {
+        const q = [finger[0] + (p[0] - finger[0]) * k / steps, finger[1] + (p[1] - finger[1]) * k / steps];
+        if (!check(q)) { finger = q; return fail('נגעתם בדופן ⚡'); }
+      }
+      finger = p;
+      if (prog >= pts.length - 3) return win();
+    }
+    draw();
+  }
+  function up() { if (state === 'run') fail('הרמתם את האצבע 🖐️'); }
+  function tick(now) {
+    if (state !== 'run' || !alive) return;
+    if ((now - t0) / 1000 > tl) return fail('נגמר הזמן ⏱️');
+    draw(now);
+    raf = requestAnimationFrame(tick);
+  }
+  function fail(msg) {
+    state = 'done'; failAt = finger; cancelAnimationFrame(raf); draw();
+    endOv(st, false, msg, `הגעתם ל-${Math.round(prog / (pts.length - 1) * 100)}% מהמסלול.`, 'נסו שוב ▶', again);
+  }
+  function win() {
+    state = 'done'; cancelAnimationFrame(raf); draw();
+    gameWin('steady');
+    endOv(st, true, 'יד יציבה!', 'עברתם את כל המסלול בלי לגעת 🩺', 'מסלול הבא ▶', again);
+  }
+  function again() { build(); draw(); }
+  function pathTo(n) { ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i <= n; i++) ctx.lineTo(pts[i][0], pts[i][1]); }
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    const N = pts.length - 1;
+    pathTo(N); ctx.strokeStyle = 'rgba(239,68,68,0.75)'; ctx.lineWidth = tw + 6; ctx.stroke();
+    pathTo(N); ctx.strokeStyle = '#2a2153'; ctx.lineWidth = tw; ctx.stroke();
+    if (prog > 0) { pathTo(Math.min(prog + 1, N)); ctx.strokeStyle = 'rgba(255,215,0,0.32)'; ctx.lineWidth = tw; ctx.stroke(); }
+    pathTo(N); ctx.setLineDash([4, 7]); ctx.strokeStyle = 'rgba(255,255,255,0.18)'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.setLineDash([]);
+    // התחלה וסיום
+    ctx.beginPath(); ctx.arc(pts[0][0], pts[0][1], Math.max(tw / 2, 12), 0, 6.283); ctx.fillStyle = '#10B981'; ctx.fill();
+    ctx.font = '22px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('🏁', pts[N][0], pts[N][1] + 2);
+    // טיימר
+    const el = state === 'run' ? ((now || performance.now()) - t0) / 1000 : 0;
+    const left = Math.max(0, tl - el);
+    ctx.fillStyle = 'rgba(255,255,255,0.12)'; ctx.fillRect(14, 40, W - 28, 6);
+    ctx.fillStyle = left < 3 ? '#EF4444' : '#FFD700'; ctx.fillRect(14, 40, (W - 28) * left / tl, 6);
+    ctx.direction = 'rtl'; ctx.font = '900 13px Heebo, sans-serif'; ctx.fillStyle = '#fff';
+    ctx.fillText(state === 'ready' ? `👆 שימו אצבע על העיגול הירוק · ${tl.toFixed(0)} שניות` : `⏱️ ${left.toFixed(1)}`, W / 2, 22);
+    if (finger && state !== 'ready') {
+      ctx.beginPath(); ctx.arc(finger[0], finger[1], 7, 0, 6.283);
+      ctx.fillStyle = failAt ? '#EF4444' : '#fff'; ctx.shadowColor = failAt ? '#EF4444' : '#FFD700'; ctx.shadowBlur = 14; ctx.fill(); ctx.shadowBlur = 0;
+    }
+  }
+  function mount(s) {
+    st = s; alive = true;
+    st.innerHTML = '<canvas class="gcv"></canvas>';
+    cv = st.querySelector('canvas');
+    size(); build(); draw();
+    cv.addEventListener('pointerdown', down);
+    cv.addEventListener('pointermove', move);
+    cv.addEventListener('pointerup', up);
+    cv.addEventListener('pointercancel', up);
+    ov(st, {emoji:'🩺', title:'יד של מנתח',
+      text:'שימו אצבע על העיגול הירוק והובילו אותה עד הדגל 🏁<br>בלי לגעת בדפנות האדומות ובלי להרים את האצבע.',
+      btns:[{label:'הבנתי ▶', fn: () => {}}]});
+  }
+  return {mount, stop: () => { alive = false; state = 'done'; cancelAnimationFrame(raf); }};
+})();
+
+// ════════════════════════════════════════════
+// 🧤 תפיסה סטרילית — כפפות כן, חיידקים לא
+// ════════════════════════════════════════════
+const Catch = (() => {
+  let st, cv, ctx, W, H, alive, running, raf, last, items, pops, tray, trayW, lives, caught, target, speed, spawnEvery, spawnAcc, accT, germ, zig, flash;
+  function size() {
+    const r = st.getBoundingClientRect(); W = r.width; H = r.height;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function mv(e) {
+    const r = cv.getBoundingClientRect();
+    tray = Math.max(trayW / 2, Math.min(W - trayW / 2, e.clientX - r.left));
+    if (!running) draw();
+  }
+  function start() {
+    const L = lvl('catch');
+    target = Math.min(22 + 3 * L, 50); lives = 3; caught = 0;
+    speed = 150 + 14 * L; spawnEvery = Math.max(850 - 40 * L, 460);
+    germ = Math.min(0.22 + 0.03 * L, 0.42); zig = L >= 3;
+    trayW = Math.max(88 - 3 * L, 62);
+    items = []; pops = []; spawnAcc = spawnEvery; accT = 0; flash = 0;
+    running = true; last = performance.now();
+    raf = requestAnimationFrame(loop);
+  }
+  function loop(now) {
+    if (!alive || !running) return;
+    const dt = Math.max(0, Math.min(32, now - last)) / 1000; last = now;
+    step(dt); draw();
+    if (running) raf = requestAnimationFrame(loop);
+  }
+  function step(dt) {
+    accT += dt;
+    if (accT >= 4) { accT = 0; speed *= 1.07; spawnEvery = Math.max(spawnEvery * 0.95, 320); }  // כל 4 שניות יותר מהר
+    spawnAcc += dt * 1000;
+    if (spawnAcc >= spawnEvery) {
+      spawnAcc = 0;
+      const x = 22 + Math.random() * (W - 44);
+      items.push({x, x0:x, y:-24, k: Math.random() < germ ? 'g' : 'c', v: speed * (0.85 + Math.random() * 0.3), ph: Math.random() * 6.28, amp: zig ? 18 + Math.random() * 30 : 0});
+    }
+    const ty = H - 50;
+    for (let i = items.length - 1; i >= 0; i--) {
+      const it = items[i];
+      it.y += it.v * dt;
+      if (it.amp) { it.ph += dt * 3; it.x = Math.max(16, Math.min(W - 16, it.x0 + Math.sin(it.ph) * it.amp)); }
+      if (it.y >= ty - 16 && it.y <= ty + 12 && Math.abs(it.x - tray) < trayW / 2 + 8) {
+        items.splice(i, 1);
+        if (it.k === 'c') { caught++; pops.push({x: it.x, y: ty - 24, t: 0, txt: '+1'}); tone(700, 70); }
+        else { lives--; flash = 1; pops.push({x: it.x, y: ty - 24, t: 0, txt: '🦠💥'}); buzz(); }
+        continue;
+      }
+      if (it.y > H + 24) {
+        items.splice(i, 1);
+        if (it.k === 'c') { lives--; flash = 1; pops.push({x: it.x, y: H - 26, t: 0, txt: '💔'}); tone(220, 140); }
+      }
+    }
+    pops.forEach(p => p.t += dt); pops = pops.filter(p => p.t < 0.7);
+    flash = Math.max(0, flash - dt * 2.5);
+    if (lives <= 0) end(false); else if (caught >= target) end(true);
+  }
+  function rr(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    if (flash > 0) { ctx.fillStyle = `rgba(239,68,68,${flash * 0.25})`; ctx.fillRect(0, 0, W, H); }
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '30px serif';
+    (items || []).forEach(it => ctx.fillText(it.k === 'c' ? '🧤' : '🦠', it.x, it.y));
+    // המגש
+    const ty = H - 50, x = tray - trayW / 2;
+    const g = ctx.createLinearGradient(0, ty - 8, 0, ty + 22);
+    g.addColorStop(0, '#FFFFFF'); g.addColorStop(1, '#93C5FD');
+    rr(x, ty - 6, trayW, 26, 8); ctx.fillStyle = g; ctx.fill();
+    ctx.strokeStyle = '#2563EB'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.font = '900 11px Heebo, sans-serif'; ctx.fillStyle = '#1E3A8A'; ctx.fillText('GLOVES', tray, ty + 7);
+    ctx.font = '900 18px serif';
+    (pops || []).forEach(p => { ctx.globalAlpha = 1 - p.t / 0.7; ctx.fillStyle = '#FFD700'; ctx.fillText(p.txt, p.x, p.y - p.t * 40); });
+    ctx.globalAlpha = 1;
+    // ניקוד
+    ctx.direction = 'rtl'; ctx.font = '900 14px Heebo, sans-serif'; ctx.fillStyle = '#fff';
+    ctx.textAlign = 'right'; ctx.fillText(`🧤 ${caught || 0}/${target || 0}`, W - 14, 20);
+    ctx.textAlign = 'left'; ctx.fillText('❤️'.repeat(Math.max(0, lives || 0)) + '🤍'.repeat(Math.max(0, 3 - (lives || 0))), 14, 20);
+  }
+  function end(ok) {
+    running = false; cancelAnimationFrame(raf);
+    if (ok) { gameWin('catch'); endOv(st, true, 'סטרילי לגמרי!', `תפסתם ${caught} כפפות 🧤`, 'משחק נוסף ▶', start); }
+    else endOv(st, false, 'נגמרו הלבבות', `תפסתם ${caught} מתוך ${target} כפפות.`, 'נסו שוב ▶', start);
+  }
+  function mount(s) {
+    st = s; alive = true; running = false;
+    st.innerHTML = '<canvas class="gcv"></canvas>';
+    cv = st.querySelector('canvas');
+    size();
+    const L = lvl('catch'); trayW = Math.max(88 - 3 * L, 62); target = Math.min(22 + 3 * L, 50); lives = 3; caught = 0;
+    tray = W / 2; items = []; pops = []; flash = 0;
+    cv.addEventListener('pointerdown', mv);
+    cv.addEventListener('pointermove', mv);
+    draw();
+    ov(st, {emoji:'🧤', title:'תפיסה סטרילית',
+      text:`גררו את המגש ותפסו <b>${target}</b> כפפות 🧤<br>חיידק 🦠 שנתפס או כפפה שנפלה = לב אחד פחות.<br>כל כמה שניות זה נהיה מהר יותר!`,
+      btns:[{label:'התחלה ▶', fn: start}]});
+  }
+  return {mount, stop: () => { alive = false; running = false; cancelAnimationFrame(raf); }};
+})();
+
+// ════════════════════════════════════════════
+// 🧠 זיכרון קליני — זוגות
+// ════════════════════════════════════════════
+const Memory = (() => {
+  const ICONS = ['🧤','😷','🩺','💉','💊','🧴','💅','🧼','🩹','🦷','🔬','🧪'];
+  let st, alive, running, deck, els, first, lock, moves, limit, matched, P, endAt, iv;
+  function status() {
+    const left = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+    st.querySelector('.gst').innerHTML = `<span>⏱️ <b>${running ? left : '—'}</b></span><span>מהלכים <b>${moves}/${limit}</b></span><span>זוגות <b>${matched}/${P}</b></span>`;
+  }
+  function setup() {
+    const L = lvl('memory');
+    P = L < 2 ? 8 : (L < 5 ? 10 : 12);
+    const cols = P === 8 ? 4 : (P === 10 ? 5 : 6);
+    limit = Math.ceil(P * (2.3 - 0.07 * Math.min(L, 7)));
+    endAt = Date.now() + Math.max(60 + P * 2 - L * 3, 40) * 1000;
+    deck = shuffle(shuffle(ICONS.slice()).slice(0, P).flatMap(x => [x, x]));
+    first = null; lock = false; moves = 0; matched = 0; running = false;
+    st.innerHTML = `<div class="gst"></div><div class="mgrid" style="grid-template-columns:repeat(${cols},1fr)">` +
+      deck.map((ic, i) => `<button class="mcard" data-i="${i}"><span class="mc-in"><span class="mc-back"></span><span class="mc-front">${ic}</span></span></button>`).join('') + '</div>';
+    els = [...st.querySelectorAll('.mcard')];
+    els.forEach((el, i) => el.addEventListener('click', () => flip(i)));
+    status();
+  }
+  function start() {
+    setup();
+    endAt = Date.now() + Math.max(60 + P * 2 - lvl('memory') * 3, 40) * 1000;
+    running = true;
+    clearInterval(iv);
+    iv = setInterval(() => {
+      if (!alive || !running) return clearInterval(iv);
+      status();
+      if (Date.now() >= endAt) end(false, 'נגמר הזמן ⏱️');
+    }, 250);
+  }
+  function flip(i) {
+    if (!running || lock) return;
+    const el = els[i];
+    if (el.classList.contains('up') || el.classList.contains('done')) return;
+    el.classList.add('up'); tone(520, 50);
+    if (first === null) { first = i; return; }
+    moves++;
+    const a = first; first = null;
+    if (deck[a] === deck[i]) {
+      els[a].classList.add('done'); el.classList.add('done'); matched++; tone(880, 110);
+      status();
+      if (matched === P) return end(true);
+      if (moves >= limit) return end(false, 'נגמרו המהלכים');
+    } else {
+      lock = true; status();
+      setTimeout(() => {
+        if (!alive) return;
+        els[a].classList.remove('up'); el.classList.remove('up'); lock = false;
+        if (running && moves >= limit) end(false, 'נגמרו המהלכים');
+      }, 720);
+    }
+  }
+  function end(ok, why) {
+    running = false; clearInterval(iv); status();
+    if (ok) { gameWin('memory'); endOv(st, true, 'זיכרון של פרופסור!', `${P} זוגות ב-${moves} מהלכים 🧠`, 'לוח חדש ▶', start); }
+    else endOv(st, false, why, `מצאתם ${matched} מתוך ${P} זוגות.`, 'נסו שוב ▶', start);
+  }
+  function mount(s) {
+    st = s; alive = true;
+    st.classList.add('auto');
+    setup();
+    ov(st, {emoji:'🧠', title:'זיכרון קליני',
+      text:`מצאו את כל ${P} הזוגות ב-<b>${limit}</b> מהלכים לכל היותר, לפני שהזמן נגמר.<br>מהלך = פתיחת שני קלפים.`,
+      btns:[{label:'התחלה ▶', fn: start}]});
+  }
+  return {mount, stop: () => { alive = false; running = false; clearInterval(iv); }};
+})();
+
+// ════════════════════════════════════════════
+// 🎨 רצף הכפפות — חזרה על רצף צבעים
+// ════════════════════════════════════════════
+const Simon = (() => {
+  const PADS = [
+    {n:'כחול', c:'#2563EB', f:330, cls:''},
+    {n:'ורוד', c:'#EC4899', f:415, cls:''},
+    {n:'שחור', c:'#1F2937', f:494, cls:'black'},
+    {n:'לבן',  c:'#F3F4F6', f:587, cls:'white'}
+  ];
+  let st, alive, seq, idx, target, flashMs, gapMs, inputMs, accept, timer, padEls;
+  function status(t) { st.querySelector('.gst').innerHTML = `<span>רצף <b>${seq ? seq.length : 0}</b> מתוך <b>${target}</b></span>` + (t ? `<span>${t}</span>` : ''); }
+  function light(i, ms) {
+    const el = padEls[i]; el.classList.add('lit'); tone(PADS[i].f, ms);
+    setTimeout(() => el.classList.remove('lit'), ms);
+  }
+  function start() {
+    const L = lvl('simon');
+    target = Math.min(7 + L, 15);
+    flashMs = Math.max(520 - 28 * L, 250);
+    gapMs = Math.max(170 - 8 * L, 90);
+    inputMs = L >= 2 ? 2600 : 3500;
+    seq = [rnd(4), rnd(4)];
+    next();
+  }
+  async function next() {
+    seq.push(rnd(4)); idx = 0; accept = false;
+    status('👀 צפו...');
+    await wait(650);
+    for (const s of seq) {
+      if (!alive) return;
+      light(s, flashMs);
+      await wait(flashMs + gapMs);
+    }
+    if (!alive) return;
+    status('👆 תורכם!');
+    accept = true; arm();
+  }
+  function arm() { clearTimeout(timer); timer = setTimeout(() => { if (accept && alive) { accept = false; fail('לקח יותר מדי זמן ⏱️'); } }, inputMs); }
+  function press(i) {
+    if (!accept) return;
+    light(i, 170);
+    clearTimeout(timer);
+    if (i !== seq[idx]) { accept = false; return fail('טעות ברצף'); }
+    idx++;
+    if (idx === seq.length) {
+      accept = false;
+      if (seq.length >= target) {
+        gameWin('simon');
+        endOv(st, true, 'זיכרון מושלם!', `חזרתם על רצף של ${seq.length} צבעים 🎨`, 'רצף חדש ▶', start);
+      } else { status('✅ יפה!'); setTimeout(() => alive && next(), 550); }
+    } else arm();
+  }
+  function fail(msg) { status(); endOv(st, false, msg, `הגעתם לרצף של ${seq.length - 1} מתוך ${target}.`, 'נסו שוב ▶', start); }
+  function mount(s) {
+    st = s; alive = true; seq = null;
+    target = Math.min(7 + lvl('simon'), 15);
+    st.innerHTML = '<div class="gst"></div><div class="spads">' +
+      PADS.map((p, i) => `<button class="spad ${p.cls}" style="--pc:${p.c}" data-i="${i}"><span>🧤</span>${p.n}</button>`).join('') + '</div>';
+    padEls = [...st.querySelectorAll('.spad')];
+    padEls.forEach((el, i) => el.addEventListener('pointerdown', e => { e.preventDefault(); press(i); }));
+    status();
+    ov(st, {emoji:'🎨', title:'רצף הכפפות',
+      text:`הכפפות נדלקות ברצף. חזרו עליו בדיוק.<br>בכל סבב נוסף צבע אחד. הגיעו לרצף של <b>${target}</b>.`,
+      btns:[{label:'התחלה ▶', fn: start}]});
+  }
+  return {mount, stop: () => { alive = false; accept = false; clearTimeout(timer); }};
+})();
+
+const GAMES = {hats: Hats, steady: Steady, catch: Catch, memory: Memory, simon: Simon};
+
+// ════════════════════════════════════════════
+// 🎡 גלגל המזל
+// ════════════════════════════════════════════
+let wheelRot = 0, spinning = false;
+function drawWheel() {
+  const cv = document.getElementById('wheelCv'), ctx = cv.getContext('2d');
+  const n = BN_PRIZES.length, R = 300, seg = 2 * Math.PI / n;
+  ctx.clearRect(0, 0, 600, 600);
+  BN_PRIZES.forEach((p, i) => {
+    const a0 = -Math.PI / 2 + i * seg;
+    ctx.beginPath(); ctx.moveTo(R, R); ctx.arc(R, R, R, a0, a0 + seg); ctx.closePath();
+    ctx.fillStyle = p.color; ctx.fill();
+    ctx.strokeStyle = 'rgba(255,215,0,0.85)'; ctx.lineWidth = 4; ctx.stroke();
+    ctx.save();
+    const ang = a0 + seg / 2, flip = Math.cos(ang) < -0.01;  // בחצי השמאלי הופכים את הכיתוב כדי שלא יהיה הפוך
+    ctx.translate(R, R); ctx.rotate(ang);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '52px serif';
+    ctx.save(); ctx.translate(R * 0.8, 0); ctx.rotate(flip ? -Math.PI / 2 : Math.PI / 2); ctx.fillText(p.emoji, 0, 0); ctx.restore();
+    ctx.direction = 'rtl'; ctx.fillStyle = '#fff'; ctx.font = '900 27px Heebo, sans-serif';
+    ctx.shadowColor = 'rgba(0,0,0,0.6)'; ctx.shadowBlur = 6;
+    ctx.translate(R * 0.48, 0); if (flip) ctx.rotate(Math.PI);
+    ctx.fillText(p.short, 0, 0);
+    ctx.restore();
+  });
+}
+function openWheel() {
+  if (curGame) closeGame();
+  document.getElementById('wheelModal').classList.remove('hide');
+  drawWheel();
+  updateWheelUi();
+  document.getElementById('wheelInfo').innerHTML = spinsAvail() ? `יש לכם <b style="color:var(--gold2)">${spinsAvail()}</b> ${spinsAvail() === 1 ? 'סיבוב' : 'סיבובים'}` : `צריך עוד ${SPIN_EVERY - totalWins() % SPIN_EVERY} הצלחות לסיבוב 🎮`;
+}
+function closeWheel() { if (!spinning) document.getElementById('wheelModal').classList.add('hide'); }
+function updateWheelUi() {
+  const b = document.getElementById('spinBtn');
+  b.disabled = spinning || spinsAvail() === 0;
+  b.textContent = spinsAvail() ? `סובבו! (${spinsAvail()})` : 'אין סיבובים כרגע';
+  document.getElementById('wheelPrizesBtn').classList.toggle('hide', spinning || freePrizes().length === 0);
+}
+function spinWheel() {
+  if (spinning || spinsAvail() <= 0) return;
+  // בוחרים פרס לפי משקל ושומרים מיד (רענון באמצע הסיבוב לא מבטל את הזכייה)
+  const total = BN_PRIZES.reduce((s, p) => s + p.weight, 0);
+  let r = Math.random() * total, i = 0;
+  while (r >= BN_PRIZES[i].weight) { r -= BN_PRIZES[i].weight; i++; }
+  const prize = BN_PRIZES[i];
+  S.spinsUsed++;
+  if (prize.type === 'again') S.bonus++;
+  else S.prizes.push({id: prize.id, t: Date.now(), coupon: null});
+  save();
+  spinning = true; updateWheelUi();
+  document.getElementById('wheelInfo').textContent = '🤞 בהצלחה...';
+  const n = BN_PRIZES.length, segDeg = 360 / n, center = (i + 0.5) * segDeg;
+  const jitter = (Math.random() - 0.5) * segDeg * 0.7;
+  const curMod = ((wheelRot % 360) + 360) % 360;
+  wheelRot += 360 * 6 + ((360 - center - curMod + jitter) % 360 + 360) % 360;
+  const cv = document.getElementById('wheelCv');
+  cv.style.transform = `rotate(${wheelRot}deg)`;
+  const ticks = setInterval(() => tone(900, 25, 'square'), 140);
+  setTimeout(() => {
+    clearInterval(ticks);
+    spinning = false;
+    document.getElementById('wheelInfo').innerHTML = prize.type === 'again'
+      ? '<div class="wheel-win">🔁 סיבוב נוסף!</div>'
+      : `<div class="wheel-win">🎉 זכיתם: ${prize.emoji} ${esc(prize.name)}</div>`;
+    confetti(); chime();
+    updateHud(true); updateWheelUi();
+  }, 5400);
+}
+
+// ════════════════════════════════════════════
+// 🎁 חלון ההצלחות והפרסים + קופון
+// ════════════════════════════════════════════
+function openPanel() { renderPanel(); document.getElementById('panelModal').classList.remove('hide'); }
+function closePanel() { document.getElementById('panelModal').classList.add('hide'); }
+function renderPanel(newCode) {
+  const w = totalWins(), sp = spinsAvail(), free = freePrizes();
+  let h = `<button class="px" onclick="closePanel()" aria-label="סגירה">✕</button><h3>⭐ ההצלחות והפרסים שלי</h3>`;
+  h += `<div class="prog-top"><span>⭐ <b>${w}</b> הצלחות</span><span>עוד ${SPIN_EVERY - w % SPIN_EVERY} לסיבוב 🎡</span></div>`;
+  h += `<div class="prog-bar"><div class="prog-fill" style="width:${(w % SPIN_EVERY) / SPIN_EVERY * 100}%"></div></div>`;
+  h += '<h4>🎮 הצלחות לפי משחק</h4>';
+  h += GAME_LIST.map(g => `<div class="p-row"><span>${g.emoji} ${g.name}</span><span class="chip gold">⭐ ${S.g[g.id].wins} · רמה ${S.g[g.id].wins + 1}</span></div>`).join('');
+  if (sp > 0) h += `<button class="btn-gold spin-ready" onclick="closePanel();openWheel()">🎡 ${sp === 1 ? 'סיבוב אחד מחכה' : sp + ' סיבובים מחכים'} לכם</button>`;
+  h += '<h4>🎁 הפרסים שלי</h4>';
+  if (!S.prizes.length) h += '<div class="p-empty">עוד אין פרסים. כל 10 הצלחות = סיבוב בגלגל 🎡</div>';
+  else {
+    h += free.map(p => {
+      const pr = bnPrizeById(p.id); if (!pr) return '';
+      return `<div class="p-prize"><label><input type="checkbox" class="pz" value="${S.prizes.indexOf(p)}" onchange="limitPick()"> ${pr.emoji} ${esc(pr.name)}</label><span class="chip ok">זמין</span></div>`;
+    }).join('');
+    if (free.length) h += `<button class="btn-gold" id="cpnBtn" onclick="makeCoupon()" disabled>🎟️ הפקת קופון (בחרו עד ${MAX_PRIZES_PER_ORDER})</button>`;
+    S.prizes.filter(p => p.coupon).forEach(p => {
+      const pr = bnPrizeById(p.id); if (!pr) return;
+      h += `<div class="p-prize"><span style="flex:1;opacity:.7">${pr.emoji} ${esc(pr.name)}</span><span class="chip used" style="direction:ltr">${p.coupon}</span></div>`;
+    });
+  }
+  const show = newCode ? S.coupons.find(c => c.code === newCode) : S.coupons[S.coupons.length - 1];
+  if (show) {
+    const names = show.ids.map(id => (bnPrizeById(id) || {}).name).filter(Boolean).join(' + ');
+    h += `<div class="cpn-box"><div style="font-size:12px;font-weight:800;color:var(--gold2);margin-bottom:4px;">🎟️ ${newCode ? 'הקופון שלכם מוכן!' : 'הקופון האחרון שלכם'}</div>
+      <div class="cpn-code">${show.code}</div><div class="cpn-prizes">${esc(names)}</div>
+      <button class="btn-gold" onclick="orderWithCoupon('${show.code}')">🛒 להזמנה עם הקופון</button>
+      <button class="btn-ghost" onclick="copyCoupon('${show.code}')">📋 העתקת הקוד</button>
+      <button class="btn-ghost btn-wa" onclick="sendCoupon('${show.code}')">💬 שליחה לנציג בוואטסאפ</button></div>`;
+  }
+  h += `<div class="rules">• עד ${MAX_PRIZES_PER_ORDER} פרסים לכל הזמנה (קופון אחד להזמנה).<br>• הפרסים מצטרפים למשלוח של הזמנה ובאישור הנציג.<br>• ההתקדמות נשמרת במכשיר ובדפדפן הזה. אפשר לסגור ולחזור.</div>`;
+  document.getElementById('panelBody').innerHTML = h;
+}
+function limitPick() {
+  const boxes = [...document.querySelectorAll('.pz')];
+  const n = boxes.filter(b => b.checked).length;
+  boxes.forEach(b => { b.disabled = !b.checked && n >= MAX_PRIZES_PER_ORDER; });
+  const btn = document.getElementById('cpnBtn');
+  if (btn) { btn.disabled = n === 0; btn.textContent = n ? `🎟️ הפקת קופון ל-${n === 1 ? 'פרס אחד' : n + ' פרסים'}` : `🎟️ הפקת קופון (בחרו עד ${MAX_PRIZES_PER_ORDER})`; }
+}
+function makeCoupon() {
+  const idx = [...document.querySelectorAll('.pz')].filter(b => b.checked).map(b => Number(b.value)).slice(0, MAX_PRIZES_PER_ORDER);
+  const chosen = idx.map(i => S.prizes[i]).filter(p => p && !p.coupon);
+  if (!chosen.length) return;
+  const code = bnEncodeCoupon(chosen.map(p => p.id), AGENT_ID);
+  chosen.forEach(p => p.coupon = code);
+  S.coupons.push({code, ids: chosen.map(p => p.id), t: Date.now()});
+  save();
+  updateHud(true);
+  renderPanel(code);
+  confetti();
+}
+function orderWithCoupon(code) { location.href = 'black-november.html?agent=' + AGENT_ID + '&coupon=' + encodeURIComponent(code); }
+function copyCoupon(code) {
+  const done = () => showToast('📋 הקוד הועתק: ' + code);
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, () => showToast('הקוד: ' + code, 5000));
+  else showToast('הקוד: ' + code, 5000);
+}
+function sendCoupon(code) {
+  const c = S.coupons.find(x => x.code === code);
+  const names = c ? c.ids.map(id => (bnPrizeById(id) || {}).name).filter(Boolean).join(' + ') : '';
+  const msg = `היי! זכיתי במשחקי הפרסים של בלאק נובמבר 🎉\n🎟️ קופון: ${code}\n🎁 ${names}\nאשמח לצרף להזמנה 🙏`;
+  window.open('https://wa.me/' + AGENTS[AGENT_ID] + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ══ הפעלה ══
+if (!GAMES_ACTIVE) document.getElementById('closedScreen').classList.remove('hide');
+updateSoundBtn();
+updateHud(false);
+window.addEventListener('storage', e => { if (e.key === STORE_KEY) { S = loadState(); updateHud(true); } });
+</script>
+</body>
+</html>
